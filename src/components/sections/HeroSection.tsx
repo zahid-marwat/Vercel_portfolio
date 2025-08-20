@@ -10,6 +10,7 @@ import { ScrollReveal, ParallaxContainer, TextRevealScroll } from '../ScrollAnim
 import { Card3D, Diamond3D, Float3D, Text3D, Button3D } from '../animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../animations/MorphingEffects'
 
+
 const HeroSection = () => {
   const [currentText, setCurrentText] = useState('')
   const [textIndex, setTextIndex] = useState(0)
@@ -162,7 +163,12 @@ const HeroSection = () => {
             <FadeInUp delay={0.8}>
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
                 <Button3D 
-                  onClick={() => window.location.href = '/projects'}
+                  onClick={() => {
+                    const element = document.getElementById('projects')
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                  }}
                   className="group"
                   data-cursor-text="See my amazing projects!"
                   data-cursor-variant="pointer"
@@ -179,7 +185,14 @@ const HeroSection = () => {
                 </Button3D>
                 
                 <Button3D 
-                  onClick={() => window.open('/assets/Zahid_Marwat_CV.pdf', '_blank')}
+                  onClick={() => {
+                    const link = document.createElement('a')
+                    link.href = '/assets/Zahid_Marwat_CV.pdf'
+                    link.download = 'Zahid_Marwat_CV.pdf'
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                  }}
                   className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white"
                   data-cursor-text="Download my resume"
                   data-cursor-variant="grab"

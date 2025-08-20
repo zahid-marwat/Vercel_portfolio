@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../animations'
+import { Card3D } from '../animations/3DEffects'
 import { motion } from 'framer-motion'
 
 const ExperienceSection = () => {
@@ -182,6 +184,44 @@ const ExperienceSection = () => {
             ))}
           </div>
         </div>
+
+        {/* View Full Experience Button */}
+        <FadeInUp delay={0.6}>
+          <div className="text-center mt-12">
+            <Card3D>
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  href="/experience"
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-blue-500 hover:from-primary-600 hover:to-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                  data-cursor-text="View my complete experience"
+                  data-cursor-variant="pointer"
+                >
+                  <span>View Full Experience</span>
+                  <motion.svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <path
+                      d="M13 7L18 12M18 12L13 17M18 12H6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </motion.svg>
+                </Link>
+              </motion.div>
+            </Card3D>
+          </div>
+        </FadeInUp>
       </div>
     </section>
   )

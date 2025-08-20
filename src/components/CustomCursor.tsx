@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
 
 const CustomCursor = () => {
@@ -9,6 +10,7 @@ const CustomCursor = () => {
   const [cursorText, setCursorText] = useState('')
   const [cursorVariant, setCursorVariant] = useState<'default' | 'text' | 'pointer' | 'grab' | 'loading'>('default')
   const [trails, setTrails] = useState<Array<{ x: number; y: number; id: number }>>([])
+  const pathname = usePathname()
   
   // Use motion values for smoother performance (GitHub-style)
   const cursorX = useMotionValue(0)
@@ -28,8 +30,29 @@ const CustomCursor = () => {
   const cursorXSpring = useSpring(cursorX, getSpringConfig())
   const cursorYSpring = useSpring(cursorY, getSpringConfig())
 
+  // Handle route changes - clear cursor state when navigating between pages
+  useEffect(() => {
+    setIsHovering(false)
+    setCursorText('')
+    setCursorVariant('default')
+  }, [pathname])
+
+  // Auto-clear cursor text if it persists too long (safety net)
+  useEffect(() => {
+    if (cursorText) {
+      const timeout = setTimeout(() => {
+        setCursorText('')
+        setCursorVariant('default')
+        setIsHovering(false)
+      }, 5000) // Clear after 5 seconds
+      
+      return () => clearTimeout(timeout)
+    }
+  }, [cursorText])
+
   useEffect(() => {
     let trailId = 0
+    let currentElements: NodeListOf<Element> | null = null
 
     const updateMousePosition = (e: MouseEvent) => {
       cursorX.set(e.clientX)
@@ -65,38 +88,126 @@ const CustomCursor = () => {
       }
     }
     
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (e: Event) => {
+      // Only clear if we're actually leaving the element
+      const target = e.target as HTMLElement
+      const relatedTarget = (e as MouseEvent).relatedTarget as HTMLElement
+      
+      // If moving to a child element, don't clear the cursor
+      if (relatedTarget && target.contains(relatedTarget)) {
+        return
+      }
+      
       setIsHovering(false)
       setCursorText('')
       setCursorVariant('default')
     }
 
-    // Enhanced interactive elements detection
-    const interactiveElements = document.querySelectorAll(`
-      a, button, input, textarea, select, 
-      [data-cursor="pointer"], [role="button"], 
-      .cursor-pointer, [onclick], [tabindex],
-      [draggable="true"], [contenteditable="true"],
-      .hover\\:, .group:hover
-    `)
-    
-    interactiveElements.forEach(element => {
-      element.addEventListener('mouseenter', handleMouseEnter)
-      element.addEventListener('mouseleave', handleMouseLeave)
+    // Global mouse leave handler to clear cursor state when leaving any element
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      
+      // Check if we're not over any interactive element
+      const isOverInteractive = target.closest(`
+        a, button, input, textarea, select, 
+        [data-cursor-text], [data-cursor-variant],
+        [role="button"], .cursor-pointer, [onclick], 
+        [draggable="true"], [contenteditable="true"]
+      `)
+      
+      if (!isOverInteractive) {
+        setIsHovering(false)
+        setCursorText('')
+        setCursorVariant('default')
+      }
+    }
+
+    // Force clear cursor state when mouse moves away from any element
+    const handleDocumentMouseLeave = () => {
+      setIsHovering(false)
+      setCursorText('')
+      setCursorVariant('default')
+    }
+
+    const setupEventListeners = () => {
+      // Remove old listeners first
+      if (currentElements) {
+        currentElements.forEach(element => {
+          element.removeEventListener('mouseenter', handleMouseEnter)
+          element.removeEventListener('mouseleave', handleMouseLeave)
+        })
+      }
+
+      // Enhanced interactive elements detection
+      currentElements = document.querySelectorAll(`
+        a, button, input, textarea, select, 
+        [data-cursor-text], [data-cursor-variant],
+        [role="button"], .cursor-pointer, [onclick], [tabindex],
+        [draggable="true"], [contenteditable="true"]
+      `)
+      
+      currentElements.forEach(element => {
+        element.addEventListener('mouseenter', handleMouseEnter)
+        element.addEventListener('mouseleave', handleMouseLeave)
+      })
+    }
+
+    // Initial setup
+    setupEventListeners()
+
+    // Re-setup listeners when DOM changes (for client-side navigation)
+    const observer = new MutationObserver((mutations) => {
+      let shouldUpdate = false
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          shouldUpdate = true
+        }
+      })
+      
+      if (shouldUpdate) {
+        // Debounce to avoid excessive updates
+        setTimeout(setupEventListeners, 100)
+      }
     })
 
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    })
+
+    // Listen for route changes to clear cursor state
+    const handleRouteChange = () => {
+      setIsHovering(false)
+      setCursorText('')
+      setCursorVariant('default')
+      // Re-setup listeners after route change
+      setTimeout(setupEventListeners, 100)
+    }
+
+    // Listen for both popstate (back/forward) and any navigation
+    window.addEventListener('popstate', handleRouteChange)
+    
     window.addEventListener('mousemove', updateMousePosition)
+    window.addEventListener('mousemove', handleGlobalMouseMove)
     window.addEventListener('mousedown', handleMouseDown)
     window.addEventListener('mouseup', handleMouseUp)
+    document.addEventListener('mouseleave', handleDocumentMouseLeave)
 
     return () => {
+      observer.disconnect()
+      window.removeEventListener('popstate', handleRouteChange)
       window.removeEventListener('mousemove', updateMousePosition)
+      window.removeEventListener('mousemove', handleGlobalMouseMove)
       window.removeEventListener('mousedown', handleMouseDown)
       window.removeEventListener('mouseup', handleMouseUp)
-      interactiveElements.forEach(element => {
-        element.removeEventListener('mouseenter', handleMouseEnter)
-        element.removeEventListener('mouseleave', handleMouseLeave)
-      })
+      document.removeEventListener('mouseleave', handleDocumentMouseLeave)
+      
+      if (currentElements) {
+        currentElements.forEach(element => {
+          element.removeEventListener('mouseenter', handleMouseEnter)
+          element.removeEventListener('mouseleave', handleMouseLeave)
+        })
+      }
     }
   }, [])
 

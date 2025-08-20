@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X, Download } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NeonGlow } from './animations/SpecialEffects'
@@ -13,32 +13,57 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const pathname = usePathname()
+  const router = useRouter()
+
+  // Check if we're on the home page
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
       
-      // GitHub-style active section detection
-      const sections = ['home', 'about', 'experience', 'tech-stack', 'projects', 'contact']
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+      // Only do section detection on home page
+      if (isHomePage) {
+        const sections = ['home', 'about', 'experience', 'tech-stack', 'projects', 'contact']
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section)
+          if (element) {
+            const rect = element.getBoundingClientRect()
+            return rect.top <= 100 && rect.bottom >= 100
+          }
+          return false
+        })
+        
+        if (currentSection) {
+          setActiveSection(currentSection)
         }
-        return false
-      })
-      
-      if (currentSection) {
-        setActiveSection(currentSection)
       }
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isHomePage])
 
-  // Smooth scroll to section function
+  // Handle navigation - different behavior for home vs detail pages
+  const handleNavigation = (href: string, label: string) => {
+    if (isHomePage) {
+      // On home page: scroll to section
+      scrollToSection(href)
+    } else {
+      // On detail pages: navigate to appropriate page
+      if (href === 'home') {
+        router.push('/')
+      } else if (href === 'tech-stack') {
+        // Tech stack is only on home page, so go home and scroll
+        router.push('/#tech-stack')
+      } else {
+        router.push(`/${href}`)
+      }
+    }
+    setIsOpen(false)
+  }
+
+  // Smooth scroll to section function (only used on home page)
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -48,9 +73,9 @@ const Navigation = () => {
         behavior: 'smooth'
       })
     }
-    setIsOpen(false)
   }
 
+  // Navigation links - same for all pages but different behavior
   const navLinks = [
     { href: 'home', label: 'Home' },
     { href: 'about', label: 'About' },
@@ -59,6 +84,17 @@ const Navigation = () => {
     { href: 'projects', label: 'Projects' },
     { href: 'contact', label: 'Contact' },
   ]
+
+  // Determine active state based on current page
+  const getActiveState = (href: string) => {
+    if (isHomePage) {
+      return activeSection === href
+    } else {
+      // On detail pages, highlight the current page
+      if (href === 'home') return false
+      return pathname === `/${href}` || (href === 'tech-stack' && pathname === '/')
+    }
+  }
 
   return (
     <motion.nav
@@ -125,13 +161,13 @@ const Navigation = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <button
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavigation(link.href, link.label)}
                     className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 group ${
-                      activeSection === link.href
+                      getActiveState(link.href)
                         ? 'text-primary-400'
                         : 'text-gray-300 hover:text-white'
                     }`}
-                    data-cursor-text={`Go to ${link.label}`}
+                    data-cursor-text={isHomePage ? `Go to ${link.label}` : `View ${link.label} page`}
                   >
                     <span className="relative z-10">{link.label}</span>
                     
@@ -142,7 +178,7 @@ const Navigation = () => {
                     />
                     
                     {/* Active/Hover Underline with GitHub-style animation */}
-                    {activeSection === link.href ? (
+                    {getActiveState(link.href) ? (
                       <motion.div 
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-400 to-blue-400 rounded-full"
                         layoutId="activeTab"
@@ -182,10 +218,9 @@ const Navigation = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Link
+                <a
                   href="/assets/Zahid_Marwat_CV.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  download="Zahid_Marwat_CV.pdf"
                   className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-blue-500 hover:from-primary-600 hover:to-blue-600 text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group"
                 >
                   {/* Animated background */}
@@ -208,7 +243,7 @@ const Navigation = () => {
                       repeatDelay: 3
                     }}
                   />
-                </Link>
+                </a>
               </MagneticButton>
             </NeonGlow>
           </div>
@@ -270,17 +305,16 @@ const Navigation = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                        pathname === link.href
+                    <button
+                      onClick={() => handleNavigation(link.href, link.label)}
+                      className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                        getActiveState(link.href)
                           ? 'text-primary-400 bg-primary-500/10'
                           : 'text-gray-300 hover:text-white hover:bg-white/10'
                       }`}
                     >
                       {link.label}
-                    </Link>
+                    </button>
                   </motion.div>
                 ))}
                 
@@ -290,16 +324,15 @@ const Navigation = () => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Link
+                  <a
                     href="/assets/Zahid_Marwat_CV.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download="Zahid_Marwat_CV.pdf"
                     onClick={() => setIsOpen(false)}
                     className="flex items-center space-x-2 w-full bg-primary-500 hover:bg-primary-600 text-white px-3 py-2 rounded-md transition-colors duration-200"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download CV</span>
-                  </Link>
+                  </a>
                 </motion.div>
               </motion.div>
             </motion.div>

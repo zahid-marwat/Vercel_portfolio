@@ -62,14 +62,19 @@ const CTASection = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Link
-                        href="/contact"
+                      <button
+                        onClick={() => {
+                          const element = document.getElementById('contact')
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                          }
+                        }}
                         className="inline-flex items-center space-x-3 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl"
                       >
                         <Mail className="w-5 h-5" />
                         <span>Start a Conversation</span>
                         <ArrowRight className="w-5 h-5" />
-                      </Link>
+                      </button>
                     </motion.div>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -136,7 +141,8 @@ const CTASection = () => {
           {/* Contact Methods */}
           <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <motion.div 
-              className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-center"
+              className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-center cursor-pointer"
+              onClick={() => window.open('mailto:fbpzahid4830@gmail.com', '_self')}
               whileHover={{ 
                 scale: 1.02,
                 y: -5,
