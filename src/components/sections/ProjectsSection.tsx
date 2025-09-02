@@ -84,19 +84,16 @@ const ProjectsSection = () => {
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
             />
             
-            <Float3D
-              intensity={15}
-              className="text-lg md:text-xl text-gray-300"
-            >
+           
               <p>
                 Explore my portfolio of innovative AI solutions and web applications
               </p>
-            </Float3D>
+
           </div>
         </FadeInUp>
 
         {/* Category Filter */}
-        <FadeInUp delay={0.2}>
+        <FadeInUp delay={0.1}>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category, index) => (
               <motion.button

@@ -1,9 +1,7 @@
 'use client'
-
-import { FadeInUp, StaggerContainer, ScaleIn, HoverCard, RotateIn, BounceIn } from '../animations'
-import { NeonGlow, MorphingShape, PulseEffect, GlitchEffect } from '../animations/SpecialEffects'
-import { ScrollReveal, ParallaxContainer, StaggerReveal, FloatingElement } from '../ScrollAnimations'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { FadeInUp, StaggerContainer, ScaleIn, HoverCard } from '../animations'
+import { NeonGlow, GlitchEffect } from '../animations/SpecialEffects'
+import { motion } from 'framer-motion'
 
 const TechStackSection = () => {
   const technologies = [
@@ -11,19 +9,19 @@ const TechStackSection = () => {
       name: 'Python',
       icon: '🐍',
       category: 'Programming',
-      proficiency: 95
+      proficiency: 90
     },
     {
       name: 'TensorFlow',
       icon: '🧠',
       category: 'AI/ML',
-      proficiency: 90
+      proficiency: 85
     },
     {
       name: 'PyTorch',
       icon: '🔥',
       category: 'AI/ML',
-      proficiency: 85
+      proficiency: 80
     },
     {
       name: 'OpenCV',
@@ -35,49 +33,49 @@ const TechStackSection = () => {
       name: 'JavaScript',
       icon: '⚡',
       category: 'Programming',
-      proficiency: 85
+      proficiency: 65
     },
     {
       name: 'React',
       icon: '⚛️',
       category: 'Frontend',
-      proficiency: 80
+      proficiency: 60
     },
-    {
-      name: 'Next.js',
-      icon: '🔺',
-      category: 'Frontend',
-      proficiency: 85
-    },
+    // {
+    //   name: 'Next.js',
+    //   icon: '🔺',
+    //   category: 'Frontend',
+    //   proficiency: 85
+    // },
     {
       name: 'Node.js',
       icon: '🟢',
       category: 'Backend',
-      proficiency: 75
+      proficiency: 65
     },
-    {
-      name: 'Docker',
-      icon: '🐳',
-      category: 'DevOps',
-      proficiency: 80
-    },
-    {
-      name: 'AWS',
-      icon: '☁️',
-      category: 'Cloud',
-      proficiency: 70
-    },
-    {
-      name: 'MongoDB',
-      icon: '🍃',
-      category: 'Database',
-      proficiency: 75
-    },
+    // {
+    //   name: 'Docker',
+    //   icon: '🐳',
+    //   category: 'DevOps',
+    //   proficiency: 80
+    // },
+    // {
+    //   name: 'AWS',
+    //   icon: '☁️',
+    //   category: 'Cloud',
+    //   proficiency: 70
+    // },
+    // {
+    //   name: 'MongoDB',
+    //   icon: '🍃',
+    //   category: 'Database',
+    //   proficiency: 75
+    // },
     {
       name: 'Git',
       icon: '📝',
       category: 'Tools',
-      proficiency: 90
+      proficiency: 80
     }
   ]
 
@@ -127,7 +125,7 @@ const TechStackSection = () => {
                     className="text-4xl mb-3 inline-block"
                     whileHover={{ 
                       rotate: [0, -15, 15, -15, 0],
-                      scale: [1, 1.2, 1.1, 1.2, 1],
+                      // scale: [1, 1.2, 1.1, 1.2, 1],
                     }}
                     transition={{ duration: 0.8 }}
                   >
@@ -135,13 +133,12 @@ const TechStackSection = () => {
                   </motion.div>
                   <motion.h3 
                     className="text-lg font-semibold text-white mb-2"
-                    whileHover={{ color: "#60a5fa" }}
+                    
                   >
                     {tech.name}
                   </motion.h3>
                   <motion.p 
                     className="text-sm text-primary-400 mb-3"
-                    whileHover={{ scale: 1.05 }}
                   >
                     {tech.category}
                   </motion.p>
@@ -150,14 +147,7 @@ const TechStackSection = () => {
                   <div className="w-full bg-dark-700 rounded-full h-3 mb-2 overflow-hidden relative">
                     <motion.div 
                       className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-blue-500/20"
-                      animate={{
-                        x: ["-100%", "100%"]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
+                    
                     />
                     <motion.div 
                       className="relative bg-gradient-to-r from-primary-500 to-blue-500 h-3 rounded-full shadow-lg"
@@ -183,69 +173,6 @@ const TechStackSection = () => {
               </HoverCard>
             </NeonGlow>
           ))}
-        </StaggerContainer>
-
-        {/* Categories Overview */}
-        <StaggerContainer staggerDelay={0.1} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
-          {categories.map((category, index) => {
-            const categoryTechs = technologies.filter(tech => tech.category === category)
-            const avgProficiency = Math.round(
-              categoryTechs.reduce((sum, tech) => sum + tech.proficiency, 0) / categoryTechs.length
-            )
-            
-            return (
-              <BounceIn key={index} delay={index * 0.1}>
-                <PulseEffect>
-                  <motion.div
-                    className="p-4 rounded-xl bg-primary-500/10 border border-primary-500/20 text-center relative overflow-hidden"
-                    whileHover={{ 
-                      scale: 1.08,
-                      backgroundColor: "rgba(59, 130, 246, 0.15)",
-                      borderColor: "rgba(59, 130, 246, 0.4)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {/* Animated Background Particles */}
-                    <motion.div
-                      className="absolute top-0 left-0 w-2 h-2 bg-primary-400 rounded-full"
-                      animate={{
-                        x: [0, 60, 0],
-                        y: [0, 40, 0],
-                        opacity: [0.3, 0.8, 0.3]
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: index * 0.5
-                      }}
-                    />
-                    
-                    <motion.h4 
-                      className="text-sm font-semibold text-primary-400 mb-1"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      {category}
-                    </motion.h4>
-                    <p className="text-xs text-gray-400">{categoryTechs.length} tools</p>
-                    <motion.div 
-                      className="text-lg font-bold text-white mt-2"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{
-                        scale: 1.2,
-                        color: "#60a5fa",
-                        textShadow: "0 0 10px rgba(96, 165, 250, 0.5)"
-                      }}
-                    >
-                      {avgProficiency}%
-                    </motion.div>
-                  </motion.div>
-                </PulseEffect>
-              </BounceIn>
-            )
-          })}
         </StaggerContainer>
 
         {/* Code Showcase Preview */}
@@ -294,7 +221,7 @@ const TechStackSection = () => {
                     >
                       Computer Vision
                     </motion.span>
-                    <span className="text-xs text-gray-400">Python • OpenCV</span>
+                    <span className="text-xs text-gray-400">Python • TensorFlow</span>
                     <motion.div
                       className="flex space-x-1"
                       initial={{ opacity: 0 }}
@@ -316,24 +243,49 @@ const TechStackSection = () => {
                       initial={{ opacity: 0.8 }}
                       whileHover={{ opacity: 1 }}
                     >
-{`import cv2
-import numpy as np
+{`model = maskrcnn_resnet50_fpn(pretrained=False, num_classes=4)
+model.load_state_dict(torch.load("maskrcnn_resnet50_trained.pth"))
+model.eval()
 
-def detect_objects(image_path):
-    """Real-time object detection"""
-    net = cv2.dnn.readNet('yolo.weights')
-    image = cv2.imread(image_path)
-    
-    # Process image
-    blob = cv2.dnn.blobFromImage(
-        image, 0.00392, (416, 416), 
-        (0, 0, 0), True, crop=False
-    )
-    
-    net.setInput(blob)
-    outputs = net.forward()
-    
-    return process_outputs(outputs)`}
+image = Image.open("3.jpg").convert("RGB")
+img_tensor = F.to_tensor(image)
+
+with torch.no_grad():
+    prediction = model([img_tensor])
+    import matplotlib.pyplot as plt
+    pred = prediction[0]
+    boxes = pred['boxes']
+    labels = pred['labels']
+    scores = pred['scores']
+    masks = pred['masks']
+
+    score_threshold = 0.5
+
+    plt.figure(figsize=(12, 12))
+    plt.imshow(image)
+    ax = plt.gca()
+
+    for i in range(len(boxes)):
+        if scores[i] >= score_threshold:
+            label_id = labels[i].item()
+            label_name = class_map.get(label_id, str(label_id))
+            print(label_name)
+
+    for i in range(len(boxes)):
+        if scores[i] >= score_threshold:
+            box = boxes[i].cpu().numpy()
+            label_id = labels[i].item()
+            label_name = class_map.get(label_id, str(label_id))
+            ax.add_patch(plt.Rectangle((box[0], box[1]), box[2]-box[0], box[3]-box[1],
+                                       fill=False, color='red', linewidth=2))
+            ax.text(box[0], box[1], f'{label_name}:{scores[i]:.2f}', 
+                    fontsize=12, color='yellow', bbox=dict(facecolor='red', alpha=0.5))
+            mask = masks[i, 0].cpu().numpy()
+            ax.imshow(mask, alpha=0.5, cmap='jet')
+
+    plt.show()
+print(prediction)
+`}
                     </motion.pre>
                     
                     {/* Typing Cursor Effect */}
@@ -365,7 +317,7 @@ def detect_objects(image_path):
                     >
                       AI Model Training
                     </motion.span>
-                    <span className="text-xs text-gray-400">Python • TensorFlow</span>
+                    <span className="text-xs text-gray-400">Python • RCNN</span>
                     <motion.div
                       className="flex space-x-1"
                       initial={{ opacity: 0 }}
@@ -387,22 +339,45 @@ def detect_objects(image_path):
                       initial={{ opacity: 0.8 }}
                       whileHover={{ opacity: 1 }}
                     >
-{`import tensorflow as tf
-from tensorflow.keras import layers
+{`def train_model(train_img_dir,train_ann_file,
+    val_img_dir,val_ann_file,num_epochs=1,
+    batch_size=2,model_output_path="maskrcnn_trained.pth"):
 
-def build_cnn_model(input_shape, num_classes):
-    """Build CNN for image classification"""
-    model = tf.keras.Sequential([
-        layers.Conv2D(32, 3, activation='relu'),
-        layers.MaxPooling2D(),
-        layers.Conv2D(64, 3, activation='relu'),
-        layers.MaxPooling2D(),
-        layers.Flatten(),
-        layers.Dense(64, activation='relu'),
-        layers.Dense(num_classes, activation='softmax')
-    ])
-    
-    return model`}
+    train_dataset = CocoDataset(
+        root=train_img_dir,annFile=train_ann_file,
+        transforms=get_transform(train=True))
+    val_dataset = CocoDataset(
+        root=val_img_dir,annFile=val_ann_file,
+        transforms=get_transform(train=False))
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
+    val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
+
+    num_classes = len(train_dataset.category_id_to_name) + 1  # +1 for background
+    model = get_model(num_classes)
+    params = [p for p in model.parameters() if p.requires_grad]
+    optimizer = torch.optim.SGD(params, lr=0.005, momentum=0.9, weight_decay=0.0005)
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)
+
+    for epoch in range(num_epochs):
+        model.train()
+        epoch_loss = 0.0
+        for images, targets in tqdm(train_loader, desc=f"Training", unit="batch"):
+            new_images, new_targets = [], []
+            for img, tgt in zip(images, targets):
+                new_images.append(img)
+                new_targets.append(tgt)
+            images = [img.to(device) for img in new_images]
+            targets = [{k: v.to(device) for k, v in t.items()} for t in new_targets]
+            loss_dict = model(images, targets)
+            losses = sum(loss for loss in loss_dict.values())
+            epoch_loss += losses.item()
+
+            optimizer.zero_grad()
+            losses.backward()
+            optimizer.step()
+        lr_scheduler.step()
+    torch.save(model.state_dict(), model_output_path))
+`}
                     </motion.pre>
                     
                     {/* Typing Cursor Effect */}
@@ -412,7 +387,7 @@ def build_cnn_model(input_shape, num_classes):
                         opacity: [1, 0, 1]
                       }}
                       transition={{
-                        duration: 1,
+                        duration: 3,
                         repeat: Infinity,
                         delay: 0.5
                       }}

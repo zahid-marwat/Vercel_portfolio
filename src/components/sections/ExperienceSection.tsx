@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../animations'
+import { FadeInUp } from '../animations'
 import { Card3D } from '../animations/3DEffects'
 import { motion } from 'framer-motion'
 
