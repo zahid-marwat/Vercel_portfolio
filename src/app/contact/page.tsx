@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Calendar, Clock, Globe } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
-import { Card3D, Float3D, Text3D, Button3D, Diamond3D, Cube3D } from '../../components/animations/3DEffects'
+import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard, FeedbackInput } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
+import Squares from '../../components/Squares'
 
 export default function ContactPage() {
   const contactMethods = [
@@ -63,7 +64,18 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 relative">
+      {/* Squares Background */}
+      <div className="fixed inset-0 -z-50">
+        <Squares 
+          speed={0.5} 
+          squareSize={40}
+          direction='diagonal'
+          borderColor='rgba(255, 255, 255, 0.1)'
+          hoverFillColor='rgba(99, 102, 241, 0.1)'
+        />
+      </div>
+      
       {/* Hero Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,11 +99,9 @@ export default function ContactPage() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               />
               
-              <Float3D intensity={10}>
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                  Let's discuss your next project or collaboration opportunity
-                </p>
-              </Float3D>
+              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+                Let's discuss your next project or collaboration opportunity
+              </p>
             </div>
           </FadeInUp>
 
@@ -99,18 +109,16 @@ export default function ContactPage() {
             {/* Contact Info */}
             <SlideInLeft>
               <div className="space-y-8">
-                <Float3D intensity={8}>
-                  <div>
-                    <Text3D 
-                      text="Let's Connect"
-                      className="text-3xl font-bold text-white mb-6"
-                    />
-                    <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                      I'm always open to discussing new opportunities, interesting projects, 
-                      or just having a conversation about technology and innovation. Feel free to reach out!
-                    </p>
-                  </div>
-                </Float3D>
+                <div>
+                  <Text3D 
+                    text="Let's Connect"
+                    className="text-3xl font-bold text-white mb-6"
+                  />
+                  <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                    I'm always open to discussing new opportunities, interesting projects, 
+                    or just having a conversation about technology and innovation. Feel free to reach out!
+                  </p>
+                </div>
 
                 {/* Contact Methods */}
                 <StaggerContainer staggerDelay={0.1} className="space-y-6">
@@ -130,15 +138,13 @@ export default function ContactPage() {
                             data-cursor-variant="pointer"
                           >
                             <div className="flex items-start space-x-4">
-                              <Float3D intensity={5}>
-                                <motion.div 
-                                  className={`w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center`}
-                                  whileHover={{ scale: 1.1, rotate: 5 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <Icon className={`w-6 h-6 ${method.color}`} />
-                                </motion.div>
-                              </Float3D>
+                              <motion.div 
+                                className={`w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center`}
+                                whileHover={{ scale: 1.1, rotate: 5 }}
+                                transition={{ duration: 0.3 }}
+                              >
+                                <Icon className={`w-6 h-6 ${method.color}`} />
+                              </motion.div>
                               <div className="flex-1">
                                 <MorphingText
                                   texts={[method.title]}
@@ -167,24 +173,22 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                   >
                     <div className="flex items-center space-x-2 mb-4">
-                      <Float3D intensity={8}>
-                        <MapPin className="w-5 h-5 text-primary-400" />
-                      </Float3D>
+                      <MapPin className="w-5 h-5 text-primary-400" />
                       <Text3D 
                         text="Location"
                         className="text-lg font-semibold text-white"
                         depth={1}
                       />
                     </div>
-                    <Float3D intensity={3}>
+                    
                       <p className="text-gray-300">
                         Based in Pakistan, available for remote work worldwide
                       </p>
-                    </Float3D>
+                    
                     
                     {/* 3D Decoration */}
                     <div className="absolute top-2 right-2 opacity-30">
-                      <Diamond3D size={15} />
+                      
                     </div>
                   </motion.div>
                 </Card3D>
@@ -197,10 +201,10 @@ export default function ContactPage() {
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden">
                   {/* 3D Floating Elements */}
                   <div className="absolute top-4 right-4 opacity-20">
-                    <Cube3D size={25} />
+                    
                   </div>
                   <div className="absolute bottom-4 left-4 opacity-20">
-                    <Diamond3D size={20} />
+                    
                   </div>
                   
                   <Text3D 
@@ -211,7 +215,7 @@ export default function ContactPage() {
                   <form className="space-y-6">
                     <StaggerContainer staggerDelay={0.1}>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <Float3D intensity={3}>
+                        
                           <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                               Name *
@@ -228,9 +232,9 @@ export default function ContactPage() {
                               data-cursor-variant="text"
                             />
                           </div>
-                        </Float3D>
                         
-                        <Float3D intensity={3}>
+                        
+                        
                           <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                               Email *
@@ -247,10 +251,10 @@ export default function ContactPage() {
                               data-cursor-variant="text"
                             />
                           </div>
-                        </Float3D>
+                        
                       </div>
 
-                      <Float3D intensity={3}>
+                      
                         <div>
                           <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                             Subject *
@@ -267,9 +271,9 @@ export default function ContactPage() {
                             data-cursor-variant="text"
                           />
                         </div>
-                      </Float3D>
+                      
 
-                      <Float3D intensity={3}>
+                      
                         <div>
                           <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                             Message *
@@ -284,7 +288,7 @@ export default function ContactPage() {
                             whileFocus={{ scale: 1.01 }}
                           />
                         </div>
-                      </Float3D>
+                      
 
                       <Button3D className="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold py-4 px-6 rounded-lg">
                         <motion.button
@@ -334,11 +338,11 @@ export default function ContactPage() {
                 text="Availability & Response"
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
-              <Float3D intensity={8}>
+              
                 <p className="text-lg text-gray-300">
                   Here's what you can expect when working with me
                 </p>
-              </Float3D>
+              
             </div>
           </FadeInUp>
 
@@ -350,7 +354,7 @@ export default function ContactPage() {
                   <FeedbackCard
                     className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 h-full"
                   >
-                    <Float3D intensity={10}>
+                    
                       <motion.div 
                         className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
                         whileHover={{ rotate: 360, scale: 1.1 }}
@@ -358,20 +362,20 @@ export default function ContactPage() {
                       >
                         <Icon className="w-8 h-8 text-primary-400" />
                       </motion.div>
-                    </Float3D>
+                    
                     
                     <MorphingText
                       texts={[item.title]}
                       className="text-xl font-semibold text-white mb-3"
                     />
                     
-                    <Float3D intensity={3}>
+                    
                       <p className="text-gray-400 leading-relaxed">{item.description}</p>
-                    </Float3D>
+                    
                     
                     {/* 3D Decoration */}
                     <div className="absolute top-2 right-2 opacity-20">
-                      <Diamond3D size={12} />
+                      
                     </div>
                   </FeedbackCard>
                 </Card3D>
@@ -392,15 +396,15 @@ export default function ContactPage() {
                   
                   {/* 3D Floating Elements */}
                   <div className="absolute top-4 left-4 opacity-30">
-                    <Cube3D size={30} />
+                    
                   </div>
                   <div className="absolute bottom-4 right-4 opacity-30">
-                    <Diamond3D size={35} />
+                    
                   </div>
                   <div className="absolute top-1/2 right-8 opacity-20">
-                    <Float3D intensity={20}>
+                    
                       <div className="w-4 h-4 bg-primary-400 rounded-full" />
-                    </Float3D>
+                    
                   </div>
                   
                   <div className="relative z-10">
@@ -409,11 +413,11 @@ export default function ContactPage() {
                       className="text-3xl md:text-4xl font-bold mb-6"
                     />
                     
-                    <Float3D intensity={8}>
+                    
                       <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
                         Let's turn your ideas into reality with cutting-edge AI and computer vision solutions.
                       </p>
-                    </Float3D>
+                    
                     
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <Button3D className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold">

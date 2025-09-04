@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ExternalLink, Github } from 'lucide-react'
 import { FadeInUp, StaggerContainer, ScaleIn, HoverCard, RevealAnimation } from '../animations'
 import { NeonGlow, TextReveal, LiquidAnimation } from '../animations/SpecialEffects'
-import { Card3D, Float3D, Text3D, Button3D } from '../animations/3DEffects'
+import { Card3D, Text3D, Button3D } from '../animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingIcon } from '../animations/MorphingEffects'
 import { SkeletonCard } from '../animations/SkeletonScreens'
 import { FeedbackButton, FeedbackCard } from '../animations/VisualFeedback'
@@ -128,34 +128,31 @@ const ProjectsSection = () => {
                       transition={{ duration: 0.3 }}
                     />
                     <div className="relative z-10 p-6 h-full flex items-center justify-center">
-                      <Float3D intensity={10}>
+                      <motion.div 
+                        className="text-center"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
                         <motion.div 
-                          className="text-center"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ duration: 0.3 }}
+                          className="text-4xl mb-2"
+                          animate={{ 
+                            rotateY: [0, 10, -10, 0]
+                          }}
+                          transition={{
+                            duration: 3,
+                            ease: "easeInOut"
+                          }}
                         >
-                          <motion.div 
-                            className="text-4xl mb-2"
-                            animate={{ 
-                              rotateY: [0, 10, -10, 0],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            {project.category === 'Computer Vision' ? '👁️' : 
-                             project.category === 'AI & ML' ? '🧠' : '💻'}
-                          </motion.div>
-                          <motion.span 
-                            className="text-primary-400 text-sm font-medium"
-                            whileHover={{ color: "#60a5fa" }}
-                          >
-                            {project.category}
-                          </motion.span>
+                          {project.category === 'Computer Vision' ? '👁️' : 
+                           project.category === 'AI & ML' ? '🧠' : '💻'}
                         </motion.div>
-                      </Float3D>
+                        <motion.span 
+                          className="text-primary-400 text-sm font-medium"
+                          whileHover={{ color: "#60a5fa" }}
+                        >
+                          {project.category}
+                        </motion.span>
+                      </motion.div>
                     </div>
                     <motion.div 
                       className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -221,7 +218,6 @@ const ProjectsSection = () => {
                                 }}
                                 transition={{ 
                                   duration: 2, 
-                                  repeat: Infinity, 
                                   delay: featureIndex * 0.5 
                                 }}
                               />

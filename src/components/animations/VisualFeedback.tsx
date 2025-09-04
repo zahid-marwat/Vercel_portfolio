@@ -88,7 +88,7 @@ export const FeedbackButton = ({
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
           animate={{ x: ["-100%", "100%"] }}
-          transition={{ duration: 1, repeat: Infinity }}
+          transition={{ duration: 1 }}
         />
       )}
 
@@ -106,7 +106,7 @@ export const FeedbackButton = ({
             <motion.div
               className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 1, ease: "linear" }}
             />
           )}
           {state === "success" && <span>✓</span>}
@@ -185,7 +185,7 @@ export const FeedbackInput = ({
           onBlur={() => setIsFocused(false)}
           className={`w-full px-4 py-3 bg-white/5 backdrop-blur-sm rounded-lg border-2 transition-all duration-300 focus:outline-none text-white placeholder-gray-400 ${getBorderColor()}`}
           animate={{
-            scale: isFocused ? 1.02 : 1,
+            scale: isFocused ? 1.02 : 1
           }}
           transition={{ duration: 0.2 }}
         />
@@ -346,7 +346,7 @@ export const ProgressFeedback = ({
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
             animate={{ x: ["-100%", "100%"] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+            transition={{ duration: 1.5 }}
           />
         </motion.div>
       </div>

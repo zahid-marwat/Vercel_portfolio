@@ -6,9 +6,10 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 // Import animation components
-import { Card3D, Float3D, Text3D, Button3D, Diamond3D, Cube3D } from '@/components/animations/3DEffects'
+import { Card3D, Text3D, Button3D } from '@/components/animations/3DEffects'
 import { MorphingShape, MorphingText, MorphingIcon, LiquidMorph } from '@/components/animations/MorphingEffects'
 import { FeedbackCard, FeedbackButton, ProgressFeedback } from '@/components/animations/VisualFeedback'
+import DotGrid from '@/components/DotGrid'
 
 export default function ExperiencePage() {
   const experience = [
@@ -134,6 +135,21 @@ export default function ExperiencePage() {
 
   return (
     <div className="min-h-screen pt-20 relative">
+      {/* DotGrid Background */}
+      <div className="fixed inset-0 -z-50">
+        <DotGrid
+          dotSize={5}
+          gap={8}
+          baseColor="rgba(99, 102, 241, 0.3)"
+          activeColor="rgba(99, 102, 241, 0.8)"
+          proximity={90}
+          shockRadius={250}
+          shockStrength={5}
+          resistance={750}
+          returnDuration={1}
+        />
+      </div>
+      
       {/* Morphing Background */}
       <div className="fixed inset-0 pointer-events-none">
         <MorphingShape
@@ -144,20 +160,6 @@ export default function ExperiencePage() {
           className="absolute bottom-20 left-10 w-96 h-96 opacity-10"
         />
       </div>
-
-      {/* Floating 3D Elements */}
-      <Float3D
-        intensity={2}
-        className="absolute top-1/4 right-1/4 pointer-events-none"
-      >
-        <Diamond3D size={40} />
-      </Float3D>
-      <Float3D
-        intensity={1.5}
-        className="absolute bottom-1/3 left-1/4 pointer-events-none"
-      >
-        <Cube3D size={40} />
-      </Float3D>
 
       {/* Hero Section */}
       <section className="py-20 lg:py-32 relative">
@@ -273,17 +275,15 @@ export default function ExperiencePage() {
                                 </div>
                               </div>
                             </div>
-                            <Float3D intensity={1} className="flex-shrink-0 ml-4">
-                              <div className="w-16 h-16 bg-primary-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm border border-primary-500/30">
-                                <motion.span 
-                                  className="text-2xl"
-                                  whileHover={{ scale: 1.2 }}
-                                  transition={{ type: "spring", stiffness: 400 }}
-                                >
-                                  🏢
-                                </motion.span>
-                              </div>
-                            </Float3D>
+                            <div className="w-16 h-16 bg-primary-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm border border-primary-500/30 flex-shrink-0 ml-4">
+                              <motion.span 
+                                className="text-2xl"
+                                whileHover={{ scale: 1.2 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                              >
+                                🏢
+                              </motion.span>
+                            </div>
                           </div>
 
                           <motion.p 
@@ -363,14 +363,6 @@ export default function ExperiencePage() {
 
       {/* Education */}
       <section className="py-20 bg-dark-800/30 relative">
-        {/* Floating decorations */}
-        <Float3D
-          intensity={1.5}
-          className="absolute top-10 right-20 pointer-events-none"
-        >
-          <Diamond3D size={30} />
-        </Float3D>
-        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -534,22 +526,6 @@ export default function ExperiencePage() {
 
       {/* Certifications */}
       <section className="py-20 relative">
-        {/* Background decoration */}
-        <div className="absolute inset-0 pointer-events-none">
-          <Float3D
-            intensity={1}
-            className="absolute top-20 left-20"
-          >
-            <Cube3D size={25} />
-          </Float3D>
-          <Float3D
-            intensity={1.5}
-            className="absolute bottom-20 right-20"
-          >
-            <Diamond3D size={35} />
-          </Float3D>
-        </div>
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -606,14 +582,14 @@ export default function ExperiencePage() {
                             {cert.date}
                           </motion.p>
                         </div>
-                        <Float3D intensity={0.5} className="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center flex-shrink-0 ml-4 border border-primary-500/30">
+                        <div className="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center flex-shrink-0 ml-4 border border-primary-500/30">
                           <motion.div
                             whileHover={{ scale: 1.2, rotate: 10 }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
                             <Award className="w-6 h-6 text-primary-400" />
                           </motion.div>
-                        </Float3D>
+                        </div>
                       </div>
                       
                       <motion.p 
@@ -708,16 +684,14 @@ export default function ExperiencePage() {
                     <Card3D className="h-full">
                       <FeedbackCard className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 h-full">
                         <div className="flex items-center space-x-3 mb-4">
-                          <Float3D intensity={0.5}>
-                            <div className="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center border border-primary-500/30">
-                              <motion.div
-                                whileHover={{ scale: 1.3, rotate: 15 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                              >
-                                <Icon className="w-5 h-5 text-primary-400" />
-                              </motion.div>
-                            </div>
-                          </Float3D>
+                          <div className="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center border border-primary-500/30">
+                            <motion.div
+                              whileHover={{ scale: 1.3, rotate: 15 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
+                              <Icon className="w-5 h-5 text-primary-400" />
+                            </motion.div>
+                          </div>
                           <Text3D
                             text={skillGroup.category}
                             className="text-lg font-semibold text-white"
@@ -764,26 +738,6 @@ export default function ExperiencePage() {
         <div className="absolute inset-0 pointer-events-none">
           <LiquidMorph className="absolute top-0 left-0 w-full h-full opacity-5" />
         </div>
-
-        {/* Floating 3D elements */}
-        <Float3D
-          intensity={2}
-          className="absolute top-10 left-1/4 pointer-events-none"
-        >
-          <Cube3D size={30} />
-        </Float3D>
-        <Float3D
-          intensity={1.5}
-          className="absolute bottom-10 right-1/4 pointer-events-none"
-        >
-          <Diamond3D size={35} />
-        </Float3D>
-        <Float3D
-          intensity={1}
-          className="absolute top-1/2 right-10 pointer-events-none"
-        >
-          <Cube3D size={20} />
-        </Float3D>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 

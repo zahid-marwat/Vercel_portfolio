@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Globe, Users, TrendingUp, Heart } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../animations'
-import { Card3D, Text3D, Cube3D} from '../animations/3DEffects'
+import { Card3D, Text3D } from '../animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../animations/MorphingEffects'
 import { FeedbackCard } from '../animations/VisualFeedback'
 import { motion } from 'framer-motion'
@@ -116,8 +116,8 @@ const AboutSection = () => {
                         className="text-center"
                        
                       >
-                        <div className="mx-auto mb-4">
-                          <Cube3D size={60} />
+                        <div className="w-15 h-15 bg-primary-500/20 rounded-lg mx-auto mb-4 flex items-center justify-center border border-primary-500/30">
+                          <span className="text-2xl">💡</span>
                         </div>
                         <Text3D 
                           text="Innovation Driven"

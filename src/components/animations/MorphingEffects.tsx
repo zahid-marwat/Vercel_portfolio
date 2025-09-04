@@ -48,11 +48,11 @@ export const MorphingShape = ({
         className="w-full h-full bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500"
         animate={{
           clipPath: getClipPath(shapes[currentShape]),
-          rotate: [0, 180, 360],
+          rotate: [0, 180, 360]
         }}
         transition={{
           clipPath: { duration: 1, ease: "easeInOut" },
-          rotate: { duration: 6, repeat: Infinity, ease: "linear" }
+          rotate: { duration: 6, ease: "linear" }
         }}
       />
     </motion.div>
@@ -122,7 +122,7 @@ export const LiquidMorph = ({
           background: `radial-gradient(circle at 30% 40%, ${colors[currentColor]}40 0%, transparent 50%), 
                       radial-gradient(circle at 80% 20%, ${colors[(currentColor + 1) % colors.length]}30 0%, transparent 50%), 
                       radial-gradient(circle at 40% 80%, ${colors[(currentColor + 2) % colors.length]}20 0%, transparent 50%)`,
-          filter: "blur(40px)",
+          filter: "blur(40px)"
         }}
         transition={{ duration: 3, ease: "easeInOut" }}
       />
@@ -135,22 +135,21 @@ export const LiquidMorph = ({
           style={{
             background: colors[(currentColor + i) % colors.length],
             width: `${100 + i * 50}px`,
-            height: `${100 + i * 50}px`,
+            height: `${100 + i * 50}px`
           }}
           animate={{
             x: [0, 100, 0],
             y: [0, -100, 0],
-            scale: [1, 1.2, 1],
+            scale: [1, 1.2, 1]
           }}
           transition={{
             duration: 8 + i * 2,
-            repeat: Infinity,
             ease: "easeInOut",
             delay: i * 2
           }}
           initial={{
             left: `${20 + i * 30}%`,
-            top: `${30 + i * 20}%`,
+            top: `${30 + i * 20}%`
           }}
         />
       ))}
@@ -249,11 +248,10 @@ export const MorphingJellyfish = ({
       style={{ width: size, height: size }}
       animate={{
         y: [0, -20, 0],
-        rotate: [0, 5, -5, 0],
+        rotate: [0, 5, -5, 0]
       }}
       transition={{
         duration: 4,
-        repeat: Infinity,
         ease: "easeInOut"
       }}
     >
@@ -262,15 +260,14 @@ export const MorphingJellyfish = ({
         className="absolute top-0 left-1/2 transform -translate-x-1/2"
         style={{
           width: size * 0.8,
-          height: size * 0.5,
+          height: size * 0.5
         }}
         animate={{
           borderRadius: ["50% 50% 40% 40%", "50% 50% 60% 60%", "50% 50% 40% 40%"],
-          scale: [1, 1.1, 1],
+          scale: [1, 1.1, 1]
         }}
         transition={{
           duration: 3,
-          repeat: Infinity,
           ease: "easeInOut"
         }}
       >
@@ -292,11 +289,10 @@ export const MorphingJellyfish = ({
           animate={{
             scaleY: [1, 0.8, 1.2, 1],
             x: [0, Math.sin(i) * 10, 0],
-            rotate: [0, Math.sin(i) * 10, 0],
+            rotate: [0, Math.sin(i) * 10, 0]
           }}
           transition={{
             duration: 2 + i * 0.3,
-            repeat: Infinity,
             ease: "easeInOut",
             delay: i * 0.2
           }}

@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import { ExternalLink, Github, Eye, Filter, Search } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
-import { Card3D, Float3D, Text3D, Button3D, Diamond3D, Cube3D } from '../../components/animations/3DEffects'
+import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText, MorphingIcon } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
+import LightRays from '../../components/LightRays'
 
 export default function ProjectsPage() {
   const projects = [
@@ -234,9 +235,25 @@ export default function ProjectsPage() {
   const allProjects = projects
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 relative">
+      {/* Light Rays Background */}
+      <div className="fixed inset-0 z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#3b82f6"
+          raysSpeed={1.2}
+          lightSpread={0.6}
+          rayLength={1.8}
+          followMouse={true}
+          mouseInfluence={0.08}
+          noiseAmount={0.05}
+          distortion={0.03}
+          className="opacity-30"
+        />
+      </div>
+
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 lg:py-32 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16 relative">
@@ -258,11 +275,9 @@ export default function ProjectsPage() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               />
               
-              <Float3D intensity={10}>
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                  Explore my portfolio of innovative AI solutions and web applications
-                </p>
-              </Float3D>
+              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+                Explore my portfolio of innovative AI solutions and web applications
+              </p>
             </div>
           </FadeInUp>
 
@@ -289,7 +304,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Featured Projects */}
-      <section className="pb-20">
+      <section className="pb-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="mb-12">
@@ -297,11 +312,9 @@ export default function ProjectsPage() {
                 text="Featured Projects"
                 className="text-3xl md:text-4xl font-bold text-center mb-4"
               />
-              <Float3D intensity={5}>
-                <p className="text-lg text-gray-300 text-center">
-                  Highlighting my most impactful and innovative work
-                </p>
-              </Float3D>
+              <p className="text-lg text-gray-300 text-center">
+                Highlighting my most impactful and innovative work
+              </p>
             </div>
           </FadeInUp>
 
@@ -314,7 +327,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* All Projects */}
-      <section className="py-20 bg-dark-800/30">
+      <section className="py-20 bg-dark-800/30 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="mb-12">
@@ -322,11 +335,9 @@ export default function ProjectsPage() {
                 text="All Projects"
                 className="text-3xl md:text-4xl font-bold text-center mb-4"
               />
-              <Float3D intensity={5}>
-                <p className="text-lg text-gray-300 text-center">
-                  Complete collection of my development work
-                </p>
-              </Float3D>
+              <p className="text-lg text-gray-300 text-center">
+                Complete collection of my development work
+              </p>
             </div>
           </FadeInUp>
 
@@ -339,7 +350,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center">
@@ -348,11 +359,9 @@ export default function ProjectsPage() {
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
               
-              <Float3D intensity={8}>
-                <p className="text-lg text-gray-300 mb-8">
-                  Let's collaborate to bring your ideas to life with cutting-edge technology
-                </p>
-              </Float3D>
+              <p className="text-lg text-gray-300 mb-8">
+                Let's collaborate to bring your ideas to life with cutting-edge technology
+              </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button3D className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold">
@@ -394,31 +403,29 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
         <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-blue-500/20 overflow-hidden">
           <LiquidMorph className="absolute inset-0 bg-dark-800/50" />
           <div className="relative z-10 p-6 h-full flex items-center justify-center">
-            <Float3D intensity={8}>
-              <div className="text-center">
-                <MorphingIcon
-                  icons={[
-                    project.category === 'Computer Vision' ? '👁️' : 
-                    project.category === 'AI & ML' ? '🧠' : 
-                    project.category === 'Web Development' ? '💻' : '📊'
-                  ]}
-                  className="text-4xl mb-2 block"
-                />
-                <span className="text-primary-400 text-sm font-medium">{project.category}</span>
-                {featured && (
-                  <motion.div 
-                    className="absolute top-4 left-4 bg-primary-500 text-white px-2 py-1 rounded text-xs font-medium"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      boxShadow: ['0 0 0px rgba(59, 130, 246, 0)', '0 0 20px rgba(59, 130, 246, 0.5)', '0 0 0px rgba(59, 130, 246, 0)']
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    Featured
-                  </motion.div>
-                )}
-              </div>
-            </Float3D>
+            <div className="text-center">
+              <MorphingIcon
+                icons={[
+                  project.category === 'Computer Vision' ? '👁️' : 
+                  project.category === 'AI & ML' ? '🧠' : 
+                  project.category === 'Web Development' ? '💻' : '📊'
+                ]}
+                className="text-4xl mb-2 block"
+              />
+              <span className="text-primary-400 text-sm font-medium">{project.category}</span>
+              {featured && (
+                <motion.div 
+                  className="absolute top-4 left-4 bg-primary-500 text-white px-2 py-1 rounded text-xs font-medium"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    boxShadow: ['0 0 0px rgba(59, 130, 246, 0)', '0 0 20px rgba(59, 130, 246, 0.5)', '0 0 0px rgba(59, 130, 246, 0)']
+                  }}
+                  transition={{ duration: 2 }}
+                >
+                  Featured
+                </motion.div>
+              )}
+            </div>
           </div>
           <motion.div 
             className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -452,11 +459,6 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
               </Button3D>
             </div>
           </motion.div>
-          
-          {/* 3D Floating Decorations */}
-          <div className="absolute bottom-2 left-2 opacity-20 group-hover:opacity-60 transition-opacity">
-            <Diamond3D size={20} />
-          </div>
         </div>
 
         {/* Project Content */}
@@ -478,16 +480,14 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
                   scale: [1, 1.3, 1],
                   opacity: [0.7, 1, 0.7]
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2 }}
               />
             </div>
           </div>
           
-          <Float3D intensity={2}>
-            <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-              {project.description}
-            </p>
-          </Float3D>
+          <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+            {project.description}
+          </p>
 
           {/* Key Features */}
           <div className="mb-4">
@@ -508,7 +508,7 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
                       scale: [1, 1.5, 1],
                       opacity: [0.5, 1, 0.5]
                     }}
-                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                    transition={{ duration: 2, delay: index * 0.3 }}
                   />
                   <span className="text-gray-400 text-xs">{feature}</span>
                 </motion.li>

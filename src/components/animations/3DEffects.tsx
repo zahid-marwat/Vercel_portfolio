@@ -44,7 +44,7 @@ export const Card3D = ({ children, className = "" }: Card3DProps) => {
       style={{
         rotateY: rotateY,
         rotateX: rotateX,
-        transformStyle: "preserve-3d",
+        transformStyle: "preserve-3d"
       }}
       className={`perspective-1000 ${className}`}
       whileHover={{ scale: 1.05 }}
@@ -53,7 +53,7 @@ export const Card3D = ({ children, className = "" }: Card3DProps) => {
       <motion.div
         style={{
           transform: "translateZ(75px)",
-          transformStyle: "preserve-3d",
+          transformStyle: "preserve-3d"
         }}
         className="relative"
       >
@@ -62,7 +62,7 @@ export const Card3D = ({ children, className = "" }: Card3DProps) => {
         <motion.div
           className="absolute inset-0 bg-black/20 blur-xl rounded-lg"
           style={{
-            transform: "translateZ(-75px) scale(0.9)",
+            transform: "translateZ(-75px) scale(0.9)"
           }}
         />
       </motion.div>
@@ -87,7 +87,6 @@ export const Diamond3D = ({ size = 100, color = "#3b82f6" }: { size?: number, co
       }}
       transition={{
         duration: 10,
-        repeat: Infinity,
         ease: "linear"
       }}
     >
@@ -125,11 +124,10 @@ export const Float3D = ({
       animate={{
         y: [-intensity, intensity, -intensity],
         rotateX: [-5, 5, -5],
-        rotateY: [-3, 3, -3],
+        rotateY: [-3, 3, -3]
       }}
       transition={{
         duration: 6,
-        repeat: Infinity,
         ease: "easeInOut"
       }}
     >
@@ -163,7 +161,6 @@ export const Cube3D = ({ size = 80 }: { size?: number }) => {
       }}
       transition={{
         duration: 8,
-        repeat: Infinity,
         ease: "linear"
       }}
     >
@@ -194,7 +191,7 @@ export const Text3D = ({
       style={{ transformStyle: "preserve-3d" }}
       whileHover={{
         rotateX: 15,
-        rotateY: 15,
+        rotateY: 15
       }}
       transition={{ duration: 0.3 }}
     >
@@ -209,7 +206,7 @@ export const Text3D = ({
           key={i}
           className="absolute top-0 left-0 text-primary-500/20"
           style={{
-            transform: `translateZ(-${(i + 1) * 2}px) translateX(${i + 1}px) translateY(${i + 1}px)`,
+            transform: `translateZ(-${(i + 1) * 2}px) translateX(${i + 1}px) translateY(${i + 1}px)`
           }}
         >
           {text}
@@ -241,11 +238,11 @@ export const Button3D = ({
       onClick={onClick}
       animate={{
         rotateX: isPressed ? 5 : 0,
-        translateZ: isPressed ? -10 : 0,
+        translateZ: isPressed ? -10 : 0
       }}
       whileHover={{
         translateZ: 10,
-        rotateX: -5,
+        rotateX: -5
       }}
       transition={{ duration: 0.1 }}
     >
@@ -267,7 +264,7 @@ export const Button3D = ({
       <motion.div
         className="absolute inset-0 bg-black/30 rounded-lg blur-md"
         style={{ 
-          transform: "translateZ(-30px) scale(1.1)",
+          transform: "translateZ(-30px) scale(1.1)"
         }}
       />
     </motion.button>

@@ -115,7 +115,6 @@ const TechStackSection = () => {
                   }}
                   transition={{
                     duration: 6,
-                    repeat: Infinity,
                     ease: "linear"
                   }}
                 />
@@ -125,7 +124,7 @@ const TechStackSection = () => {
                     className="text-4xl mb-3 inline-block"
                     whileHover={{ 
                       rotate: [0, -15, 15, -15, 0],
-                      // scale: [1, 1.2, 1.1, 1.2, 1],
+                      // scale: [1, 1.2, 1.1, 1.2, 1]
                     }}
                     transition={{ duration: 0.8 }}
                   >
@@ -194,7 +193,6 @@ const TechStackSection = () => {
                 }}
                 transition={{
                   duration: 4,
-                  repeat: Infinity,
                   ease: "linear"
                 }}
               />
@@ -295,9 +293,8 @@ print(prediction)
                         opacity: [1, 0, 1]
                       }}
                       transition={{
-                        duration: 1,
-                        repeat: Infinity
-                      }}
+                        duration: 1
+                        }}
                     />
                   </motion.div>
                 </motion.div>
@@ -388,7 +385,6 @@ print(prediction)
                       }}
                       transition={{
                         duration: 3,
-                        repeat: Infinity,
                         delay: 0.5
                       }}
                     />
@@ -405,7 +401,6 @@ print(prediction)
                 }}
                 transition={{
                   duration: 8,
-                  repeat: Infinity,
                   ease: "linear"
                 }}
               >

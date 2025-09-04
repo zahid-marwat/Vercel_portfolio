@@ -228,7 +228,7 @@ const ExperienceSection = () => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
                   >
                     <path
                       d="M13 7L18 12M18 12L13 17M18 12H6"

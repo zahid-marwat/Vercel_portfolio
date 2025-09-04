@@ -6,8 +6,9 @@ import { ArrowRight, Download, Github, Linkedin, Twitter, Mail } from 'lucide-re
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn } from '../animations'
-import { Card3D, Diamond3D, Float3D, Text3D, Button3D } from '../animations/3DEffects'
+import { Card3D, Text3D, Button3D } from '../animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../animations/MorphingEffects'
+import HolographicLogo from '../HolographicLogo'
 
 
 const HeroSection = () => {
@@ -91,7 +92,6 @@ const HeroSection = () => {
           }}
           transition={{
             duration: 8,
-            repeat: Infinity,
             ease: "easeInOut"
           }}
         />
@@ -103,7 +103,6 @@ const HeroSection = () => {
           }}
           transition={{
             duration: 6,
-            repeat: Infinity,
             ease: "easeInOut",
             delay: 1
           }}
@@ -116,7 +115,6 @@ const HeroSection = () => {
           }}
           transition={{
             duration: 10,
-            repeat: Infinity,
             ease: "easeInOut",
             delay: 2
           }}
@@ -127,7 +125,7 @@ const HeroSection = () => {
         className="container mx-auto px-4 sm:px-6 lg:px-8"
         style={{ y: yText }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-center lg:justify-items-start">
           {/* Text Content */}
           <SlideInLeft className="space-y-8 text-center lg:text-left">
             <div className="space-y-4">
@@ -176,7 +174,7 @@ const HeroSection = () => {
                     <span>View My Work</span>
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
+                      transition={{ duration: 1.5 }}
                     >
                       <ArrowRight className="w-5 h-5" />
                     </motion.div>
@@ -199,7 +197,7 @@ const HeroSection = () => {
                   <div className="flex items-center space-x-2">
                     <motion.div
                       animate={{ y: [0, -3, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      transition={{ duration: 2 }}
                     >
                       <Download className="w-5 h-5" />
                     </motion.div>
@@ -263,7 +261,7 @@ const HeroSection = () => {
             </FadeInUp>
           </SlideInLeft>
 
-          {/* Profile Image */}
+          {/* Profile Card */}
           <SlideInRight className="relative flex justify-center lg:justify-end">
             <div className="relative">
               {/* Background Glow */}
@@ -275,59 +273,31 @@ const HeroSection = () => {
                 }}
                 transition={{
                   duration: 4,
-                  repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
               
-              {/* Profile Image Container */}
+              {/* Profile Card Container */}
               <ScaleIn delay={0.3}>
-                <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[400px] lg:h-[400px]">
-                  <motion.div
-                    className="w-full h-full rounded-full bg-gradient-to-r from-primary-500 to-blue-500 p-1"
-                    whileHover={{ rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="w-full h-full rounded-full bg-dark-900 p-4">
-                      <div className="w-full h-full rounded-full overflow-hidden">
-                        <Image
-                          src="/assets/profile-picture.png"
-                          alt="Zahid Marwat"
-                          width={400}
-                          height={400}
-                          className="w-full h-full object-cover"
-                          priority
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
+                <div className="relative">
+                  <HolographicLogo
+                    name="Zahid Marwat"
+                    title="Computer Vision Engineer"
+                    handle="zahid-marwat"
+                    status="Available for hire"
+                    contactText="Let's Connect"
+                    avatarUrl="/assets/profile-picture.png"
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    onContactClick={() => {
+                      const element = document.getElementById('contact')
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                      }
+                    }}
+                  />
                 </div>
               </ScaleIn>
-
-              {/* Enhanced 3D Floating Elements */}
-            
-              
-              <Float3D intensity={12} className="absolute -bottom-9 -right-6">
-                <Card3D className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <MorphingText 
-                    texts={["🎯", "⚡", "🚀", "💡"]} 
-                    className="text-2xl h-8 w-8 flex items-center justify-center"
-                  />
-                </Card3D>
-              </Float3D>
-              
-              <Float3D intensity={15} className="absolute top-1/4 -left-10">
-                <Card3D className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <MorphingText 
-                    texts={["🎯", "⚡", "🚀", "💡"]} 
-                    className="text-2xl h-8 w-8 flex items-center justify-center"
-                  />
-                </Card3D>
-              </Float3D>
-              
-          
-              
-           
             </div>
           </SlideInRight>
         </div>
@@ -340,7 +310,6 @@ const HeroSection = () => {
           }}
           transition={{
             duration: 2,
-            repeat: Infinity,
             ease: "easeInOut"
           }}
         >
@@ -352,7 +321,6 @@ const HeroSection = () => {
               }}
               transition={{
                 duration: 1.5,
-                repeat: Infinity,
                 ease: "easeInOut"
               }}
             />

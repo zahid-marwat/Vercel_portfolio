@@ -34,7 +34,7 @@ export const TypewriterEffect = ({
       {text}
       <motion.span
         animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 1, repeat: Infinity }}
+        transition={{ duration: 1 }}
         className="ml-1"
       >
         |
@@ -80,15 +80,14 @@ export const ParticleBackground = () => {
       className="absolute w-1 h-1 bg-primary-400 rounded-full opacity-20"
       initial={{
         x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        y: Math.random() * window.innerHeight
       }}
       animate={{
         x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        y: Math.random() * window.innerHeight
       }}
       transition={{
         duration: Math.random() * 20 + 10,
-        repeat: Infinity,
         repeatType: "reverse",
         ease: "linear"
       }}
@@ -117,7 +116,6 @@ export const MorphingShape = ({ className = '' }: { className?: string }) => {
       }}
       transition={{
         duration: 8,
-        repeat: Infinity,
         ease: "easeInOut"
       }}
     />
@@ -145,7 +143,6 @@ export const LiquidAnimation = ({ children, className = '' }: SpecialEffectProps
         }}
         transition={{
           duration: 4,
-          repeat: Infinity,
           ease: "linear"
         }}
       />
@@ -189,7 +186,6 @@ export const PulseEffect = ({ children, className = '' }: SpecialEffectProps) =>
       }}
       transition={{
         duration: 2,
-        repeat: Infinity,
         ease: "easeInOut"
       }}
     >
@@ -214,7 +210,6 @@ export const AnimatedSpinner = ({ size = 40, color = "#3b82f6" }: { size?: numbe
         animate={{ rotate: 360 }}
         transition={{
           duration: 1,
-          repeat: Infinity,
           ease: "linear"
         }}
       />
@@ -227,7 +222,6 @@ export const AnimatedSpinner = ({ size = 40, color = "#3b82f6" }: { size?: numbe
         animate={{ rotate: -360 }}
         transition={{
           duration: 1.5,
-          repeat: Infinity,
           ease: "linear"
         }}
       />

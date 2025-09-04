@@ -235,7 +235,7 @@ const CustomCursor = () => {
               width: sizes.trail * (index + 1) * 0.5,
               height: sizes.trail * (index + 1) * 0.5,
               left: trail.x - (sizes.trail * (index + 1) * 0.25),
-              top: trail.y - (sizes.trail * (index + 1) * 0.25),
+              top: trail.y - (sizes.trail * (index + 1) * 0.25)
             }}
             initial={{ opacity: 0.8, scale: 1 }}
             animate={{ opacity: 0, scale: 0.5 }}
@@ -254,7 +254,7 @@ const CustomCursor = () => {
           translateX: '-50%',
           translateY: '-50%',
           width: sizes.main * 4,
-          height: sizes.main * 4,
+          height: sizes.main * 4
         }}
         animate={{
           scale: isHovering ? 1.5 : isClicking ? 0.8 : 1,
@@ -264,7 +264,7 @@ const CustomCursor = () => {
             cursorVariant === 'grab' ? 'rgba(249, 115, 22, 0.6)' :
             cursorVariant === 'loading' ? 'rgba(168, 85, 247, 0.6)' :
             isHovering ? 'rgba(59, 130, 246, 0.6)' : 'rgba(59, 130, 246, 0.3)',
-          borderRadius: cursorVariant === 'text' ? '2px' : '50%',
+          borderRadius: cursorVariant === 'text' ? '2px' : '50%'
         }}
         transition={{
           type: "spring",
@@ -278,7 +278,7 @@ const CustomCursor = () => {
           <motion.div
             className="absolute inset-2 border-2 border-white border-t-transparent rounded-full"
             animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 1, ease: "linear" }}
           />
         )}
       </motion.div>
@@ -292,7 +292,7 @@ const CustomCursor = () => {
           translateX: '-50%',
           translateY: '-50%',
           width: sizes.trail * 4,
-          height: sizes.trail * 4,
+          height: sizes.trail * 4
         }}
         animate={{
           scale: isHovering ? 0 : isClicking ? 1.5 : 1,
@@ -321,7 +321,7 @@ const CustomCursor = () => {
           translateX: '-50%',
           translateY: '-50%',
           width: sizes.main * 8,
-          height: sizes.main * 8,
+          height: sizes.main * 8
         }}
         animate={{
           scale: isHovering ? 3 : isClicking ? 2 : 1,
@@ -375,7 +375,7 @@ const CustomCursor = () => {
                 <motion.span 
                   className="text-purple-400"
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 2, ease: "linear" }}
                 >
                   ⏳
                 </motion.span>
@@ -429,7 +429,7 @@ const CustomCursor = () => {
             x: cursorXSpring,
             y: cursorYSpring,
             translateX: '-50%',
-            translateY: '-50%',
+            translateY: '-50%'
           }}
         >
           {[...Array(8)].map((_, i) => (
@@ -439,12 +439,11 @@ const CustomCursor = () => {
               animate={{
                 x: Math.cos((i * Math.PI * 2) / 8) * 20,
                 y: Math.sin((i * Math.PI * 2) / 8) * 20,
-                opacity: [0.5, 1, 0.5],
+                opacity: [0.5, 1, 0.5]
               }}
               transition={{
                 duration: 2,
-                repeat: Infinity,
-                delay: i * 0.1,
+                delay: i * 0.1
               }}
             />
           ))}

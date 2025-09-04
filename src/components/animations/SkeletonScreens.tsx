@@ -32,11 +32,10 @@ export const SkeletonLoader = ({
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700"
         animate={{
-          x: ["-100%", "100%"],
+          x: ["-100%", "100%"]
         }}
         transition={{
           duration: 1.5,
-          repeat: Infinity,
           ease: "easeInOut"
         }}
       />
@@ -196,11 +195,10 @@ export const SkeletonImage = ({
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
         animate={{
-          x: ["-100%", "100%"],
+          x: ["-100%", "100%"]
         }}
         transition={{
           duration: 2,
-          repeat: Infinity,
           ease: "easeInOut"
         }}
       />
@@ -210,7 +208,7 @@ export const SkeletonImage = ({
         <motion.div
           className="w-16 h-16 text-gray-400"
           animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          transition={{ duration: 2 }}
         >
           <svg fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />

@@ -126,7 +126,6 @@ const Navigation = () => {
                     }}
                     transition={{
                       duration: 4,
-                      repeat: Infinity,
                       ease: "linear"
                     }}
                   />
@@ -239,7 +238,6 @@ const Navigation = () => {
                     }}
                     transition={{
                       duration: 1.5,
-                      repeat: Infinity,
                       repeatDelay: 3
                     }}
                   />

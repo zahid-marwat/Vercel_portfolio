@@ -199,14 +199,13 @@ export const FloatingElement = ({
       animate={{ 
         opacity: 1, 
         scale: 1,
-        y: [0, -10, 0],
+        y: [0, -10, 0]
       }}
       transition={{
         opacity: { duration: 0.6, delay },
         scale: { duration: 0.6, delay },
         y: {
           duration: 3,
-          repeat: Infinity,
           ease: "easeInOut",
           delay: delay + 0.6
         }

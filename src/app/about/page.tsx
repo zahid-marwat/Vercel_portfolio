@@ -4,10 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Download, ExternalLink, MapPin, Calendar, GraduationCap, Briefcase } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
-import { Card3D, Float3D, Text3D, Button3D, Diamond3D, Cube3D } from '../../components/animations/3DEffects'
+import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard, ProgressFeedback } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
+import Galaxy from '../../components/Galaxy'
 
 export default function AboutPage() {
   const skills = [
@@ -64,9 +65,25 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 relative">
+      {/* Galaxy Background */}
+      <div className="fixed inset-0 z-0">
+        <Galaxy 
+          mouseRepulsion={true}
+          mouseInteraction={true}
+          density={1.2}
+          glowIntensity={0.4}
+          saturation={0.6}
+          hueShift={220}
+          speed={0.8}
+          twinkleIntensity={0.4}
+          rotationSpeed={0.05}
+          className="opacity-25"
+        />
+      </div>
+
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 lg:py-32 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-4xl mx-auto text-center mb-16 relative">
@@ -88,11 +105,11 @@ export default function AboutPage() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               />
               
-              <Float3D intensity={10}>
+              
                 <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
                   Learn more about my journey, experience, and passion for AI & Computer Vision
                 </p>
-              </Float3D>
+              
             </div>
           </FadeInUp>
 
@@ -103,7 +120,7 @@ export default function AboutPage() {
                 <Card3D>
                   <div className="relative w-80 h-80 md:w-96 md:h-96">
                     <LiquidMorph className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-blue-500/20 rounded-2xl blur-3xl" />
-                    <Float3D intensity={15}>
+                    
                       <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10">
                         <Image
                           src="/assets/profile-picture.png"
@@ -114,14 +131,14 @@ export default function AboutPage() {
                           priority
                         />
                       </div>
-                    </Float3D>
+                    
                     
                     {/* 3D Floating Elements */}
                     <div className="absolute -top-4 -right-4">
-                      <Diamond3D size={40} />
+                      
                     </div>
                     <div className="absolute -bottom-4 -left-4">
-                      <Cube3D size={35} />
+                      
                     </div>
                   </div>
                 </Card3D>
@@ -136,29 +153,29 @@ export default function AboutPage() {
                   className="text-3xl md:text-4xl font-bold text-white mb-6"
                 />
                 
-                <Float3D intensity={5}>
+                
                   <p className="text-gray-300 leading-relaxed">
                     I'm a passionate Computer Vision Engineer and AI/ML Enthusiast with a strong 
                     background in software development. Currently pursuing my Master's in Information 
                     Security at NUST, I love working on cutting-edge projects that push the boundaries 
                     of what's possible with artificial intelligence.
                   </p>
-                </Float3D>
                 
-                <Float3D intensity={5}>
+                
+                
                   <p className="text-gray-300 leading-relaxed">
                     My journey in technology began with a fascination for how machines can "see" 
                     and understand the world. This led me to specialize in computer vision, where 
                     I've developed expertise in deep learning, image processing, and AI model deployment.
                   </p>
-                </Float3D>
                 
-                <Float3D intensity={5}>
+                
+                
                   <p className="text-gray-300 leading-relaxed">
                     Currently working as a Senior Computer Vision Engineer at Airloop, I lead teams 
                     in developing innovative AI solutions that solve real-world problems.
                   </p>
-                </Float3D>
+                
 
                 {/* Quick Stats */}
                 <StaggerContainer staggerDelay={0.1} className="grid grid-cols-2 gap-4 pt-6">
@@ -215,7 +232,7 @@ export default function AboutPage() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 bg-dark-800/30">
+      <section className="py-20 bg-dark-800/30 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16">
@@ -223,11 +240,11 @@ export default function AboutPage() {
                 text="Technical Skills"
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
-              <Float3D intensity={8}>
+              
                 <p className="text-lg text-gray-300">
                   Comprehensive overview of my technical expertise and capabilities
                 </p>
-              </Float3D>
+              
             </div>
           </FadeInUp>
 
@@ -249,7 +266,7 @@ export default function AboutPage() {
                     
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-400">{skill.level}%</span>
-                      <Float3D intensity={3}>
+                      
                         <motion.div
                           className="w-2 h-2 bg-primary-400 rounded-full"
                           animate={{
@@ -258,11 +275,10 @@ export default function AboutPage() {
                           }}
                           transition={{
                             duration: 2,
-                            repeat: Infinity,
-                            delay: index * 0.2,
+                            delay: index * 0.2
                           }}
                         />
-                      </Float3D>
+                      
                     </div>
                   </FeedbackCard>
                 </Card3D>
@@ -273,7 +289,7 @@ export default function AboutPage() {
       </section>
 
       {/* Education Section */}
-      <section className="py-20">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16">
@@ -281,11 +297,11 @@ export default function AboutPage() {
                 text="Education"
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
-              <Float3D intensity={8}>
+              
                 <p className="text-lg text-gray-300">
                   Academic background and qualifications
                 </p>
-              </Float3D>
+              
             </div>
           </FadeInUp>
 
@@ -317,15 +333,15 @@ export default function AboutPage() {
                           </motion.div>
                         </div>
                         <div className="flex items-center space-x-2 text-primary-400 mb-2">
-                          <Float3D intensity={5}>
+                          
                             <GraduationCap className="w-5 h-5" />
-                          </Float3D>
+                          
                           <span className="font-semibold">{edu.institution}</span>
                         </div>
                         <p className="text-gray-400 mb-4">{edu.duration}</p>
-                        <Float3D intensity={3}>
+                        
                           <p className="text-gray-300 leading-relaxed">{edu.description}</p>
-                        </Float3D>
+                        
                       </div>
                     </div>
                   </FeedbackCard>
@@ -337,7 +353,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-dark-800/30">
+      <section className="py-20 bg-dark-800/30 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16">
@@ -345,11 +361,11 @@ export default function AboutPage() {
                 text="My Values & Approach"
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
-              <Float3D intensity={8}>
+              
                 <p className="text-lg text-gray-300">
                   The principles that guide my work and collaboration
                 </p>
-              </Float3D>
+              
             </div>
           </FadeInUp>
 
@@ -359,7 +375,7 @@ export default function AboutPage() {
                 <FeedbackCard
                   className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 h-full"
                 >
-                  <Float3D intensity={10}>
+                  
                     <motion.div 
                       className="text-4xl mb-4"
                       animate={{
@@ -368,22 +384,21 @@ export default function AboutPage() {
                       }}
                       transition={{
                         duration: 3,
-                        repeat: Infinity,
-                        delay: index * 0.5,
+                        delay: index * 0.5
                       }}
                     >
                       {value.icon}
                     </motion.div>
-                  </Float3D>
+                  
                   
                   <MorphingText
                     texts={[value.title]}
                     className="text-xl font-semibold text-white mb-3"
                   />
                   
-                  <Float3D intensity={3}>
+                  
                     <p className="text-gray-400 text-sm leading-relaxed">{value.description}</p>
-                  </Float3D>
+                  
                 </FeedbackCard>
               </Card3D>
             ))}
@@ -392,7 +407,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center">
@@ -401,11 +416,11 @@ export default function AboutPage() {
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
               
-              <Float3D intensity={8}>
+              
                 <p className="text-lg text-gray-300 mb-8">
                   Ready to bring your AI and computer vision projects to life? Let's discuss how I can help.
                 </p>
-              </Float3D>
+              
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button3D className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold">

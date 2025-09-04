@@ -23,7 +23,6 @@ const CTASection = () => {
                 }}
                 transition={{
                   duration: 4,
-                  repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
@@ -35,7 +34,6 @@ const CTASection = () => {
                 }}
                 transition={{
                   duration: 4,
-                  repeat: Infinity,
                   ease: "easeInOut",
                   delay: 2
                 }}

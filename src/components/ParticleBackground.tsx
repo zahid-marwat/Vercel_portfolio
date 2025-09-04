@@ -92,7 +92,6 @@ const ParticleBackground = () => {
           }}
           transition={{
             duration: Math.random() * 20 + 20,
-            repeat: Infinity,
             ease: "linear"
           }}
         />
@@ -111,7 +110,6 @@ const ParticleBackground = () => {
         }}
         transition={{
           duration: 15,
-          repeat: Infinity,
           ease: "linear"
         }}
       />
@@ -125,7 +123,6 @@ const ParticleBackground = () => {
         }}
         transition={{
           duration: 12,
-          repeat: Infinity,
           ease: "linear"
         }}
       />
@@ -139,7 +136,6 @@ const ParticleBackground = () => {
         }}
         transition={{
           duration: 18,
-          repeat: Infinity,
           ease: "linear"
         }}
       />
