@@ -199,8 +199,8 @@ const CTASection = () => {
           {/* Stats */}
           <StaggerContainer staggerDelay={0.1} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             {[
-              { number: '50+', label: 'Projects Delivered' },
-              { number: '25+', label: 'Happy Clients' },
+              { number: '20+', label: 'Projects Delivered' },
+              { number: '6+', label: 'Happy Clients' },
               { number: '3+', label: 'Years Experience' },
               { number: '24/7', label: 'Support Available' }
             ].map((stat, index) => (

@@ -6,35 +6,35 @@ import { motion } from 'framer-motion'
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      position: 'CEO at TechVision',
-      company: 'TechVision',
+      name: 'Muhammad Bilal',
+      position: 'CEO at Bilal Labs',
+      company: 'Bilal Labs',
       content: 'Working with Zahid was seamless and highly productive. His attention to detail and commitment to our project\'s success were exceptional. His computer vision solutions transformed our business operations.',
-      avatar: 'SJ',
+      avatar: 'MB',
       rating: 5
     },
     {
-      name: 'Michael Chen',
-      position: 'CTO at DataFlow',
-      company: 'DataFlow',
+      name: 'Dr. Shahbaz Khan',
+      position: 'CTO at Airloop',
+      company: 'Airloop',
       content: 'Zahid\'s expertise in AI and machine learning is outstanding. He delivered a complex computer vision system that exceeded our expectations. His technical skills and problem-solving abilities are top-notch.',
-      avatar: 'MC',
+      avatar: 'SK',
       rating: 5
     },
     {
-      name: 'Emily Rodriguez',
-      position: 'Product Manager at InnovateLab',
-      company: 'InnovateLab',
-      content: 'Zahid brought innovative solutions to our computer vision challenges. His ability to translate complex AI concepts into practical applications is remarkable. Highly recommended for any AI project.',
-      avatar: 'ER',
+      name: 'Shahbaz Khattak',
+      position: 'Product Manager at Airloop',
+      company: 'Airloop',
+      content: 'Zahid brought innovative solutions to our computer vision challenges. His ability to translate complex AI concepts into practical applications is remarkable. Zahid is fun to work with. He can be a valuable resource for any team.',
+      avatar: 'SK',
       rating: 5
     },
     {
-      name: 'David Kim',
-      position: 'Founder at SmartSystems',
-      company: 'SmartSystems',
+      name: 'M. Faaz Qadeer',
+      position: 'Founder at Technofa',
+      company: 'Technofa',
       content: 'The AI-powered system Zahid developed for us has significantly improved our operational efficiency. His deep understanding of machine learning and professional approach made the project a success.',
-      avatar: 'DK',
+      avatar: 'FQ',
       rating: 5
     }
   ]
@@ -66,20 +66,7 @@ const TestimonialsSection = () => {
             >
               {/* Quote */}
               <div className="mb-6">
-                <motion.div 
-                  className="text-4xl text-primary-400 mb-4"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.8, 1, 0.8]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  "
-                </motion.div>
+       
                 <p className="text-gray-300 leading-relaxed italic">
                   {testimonial.content}
                 </p>
@@ -129,7 +116,7 @@ const TestimonialsSection = () => {
             </h3>
           </FadeInUp>
           <StaggerContainer staggerDelay={0.1} className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-            {['Airloop', 'TechVision', 'DataFlow', 'InnovateLab', 'SmartSystems'].map((company, index) => (
+            {['Airloop', 'Bilal Labs', 'DataPoint', 'Technofa'].map((company, index) => (
               <motion.div
                 key={index}
                 className="px-6 py-3 bg-white/5 rounded-lg border border-white/10"

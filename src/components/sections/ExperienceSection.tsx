@@ -19,7 +19,7 @@ const ExperienceSection = () => {
         'Improved model inference speed by 40% through optimization',
         'Implemented MLOps pipelines reducing deployment time by 60%'
       ],
-      technologies: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'Docker', 'AWS']
+      technologies: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'Git' ]
     }
   ]
 
@@ -83,15 +83,19 @@ const ExperienceSection = () => {
                     </div>
                     <p className="text-gray-400">{exp.duration}</p>
                   </div>
-                  <motion.div 
-                    className="flex-shrink-0"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="w-20 h-20 bg-primary-500/20 rounded-lg flex items-center justify-center">
-                      <span className="text-2xl">🏢</span>
-                    </div>
-                  </motion.div>
+                    <motion.div
+                      className="flex-shrink-0 flex items-center justify-center w-30 h-10 bg-primary-500/100 rounded-lg overflow-hidden cursor-pointer"
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Link href="https://airloop.ai" target="_blank" rel="noopener noreferrer">
+                        <img
+                          src="/assets/airloop_logo.png"
+                          alt={`${exp.company} logo`}
+                          className="w-20 h-20 object-contain"
+                        />
+                      </Link>
+                    </motion.div>
                 </div>
 
                 <p className="text-gray-300 mb-6 leading-relaxed">{exp.description}</p>
@@ -110,8 +114,7 @@ const ExperienceSection = () => {
                       >
                         <motion.div 
                           className="w-2 h-2 bg-primary-400 rounded-full mt-2 flex-shrink-0"
-                          animate={{ scale: [1, 1.3, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: achIndex * 0.3 }}
+                         
                         />
                         <span className="text-gray-300">{achievement}</span>
                       </motion.li>
@@ -167,15 +170,33 @@ const ExperienceSection = () => {
                     <p className="text-primary-400 font-semibold mb-1">{edu.institution}</p>
                     <p className="text-gray-400 text-sm">{edu.duration}</p>
                   </div>
-                  <motion.div 
+                    <motion.div 
                     className={`px-3 py-1 rounded-full text-xs font-medium ${
                       edu.status === 'Current' 
-                        ? 'bg-green-500/20 text-green-400' 
-                        : 'bg-blue-500/20 text-blue-400'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                      
+                      ? 'bg-green-500/20 text-green-400' 
+                      : 'bg-blue-500/20 text-blue-400'
+                    } flex items-center gap-2`}
+                    >
+                    {/* University logo */}
+                    {edu.institution === 'National University of Sciences and Technology (NUST)' && (
+                      <Link href="https://nust.edu.pk/" target="_blank" rel="noopener noreferrer">
+                      <img
+                        src="/assets/NUST.png"
+                        alt="NUST"
+                        className="w-8 h-8 object-contain"
+                      />
+                      </Link>
+                    )}
+                    {edu.institution === 'Ghulam Ishaq Khan Institute (GIKI)' && (
+                      <Link href="https://giki.edu.pk/" target="_blank" rel="noopener noreferrer">
+                        <img
+                          src="/assets/GIKI.png"
+                          alt="GIKI"
+                          className="w-8 h-8 object-contain"
+                        />
+                      </Link>
+                    )}
                     {edu.status}
                   </motion.div>
                 </div>

@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Download, Github, Linkedin, Twitter, Mail } from 'lucide-react'
 import Image from 'next/image'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
-import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn, FloatingElement } from '../animations'
-import { ScrollReveal, ParallaxContainer, TextRevealScroll } from '../ScrollAnimations'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn } from '../animations'
 import { Card3D, Diamond3D, Float3D, Text3D, Button3D } from '../animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../animations/MorphingEffects'
 
@@ -306,19 +305,9 @@ const HeroSection = () => {
               </ScaleIn>
 
               {/* Enhanced 3D Floating Elements */}
-              <Float3D intensity={30} className="absolute -top-8 -right-8">
-                <Card3D className="w-24 h-24 bg-primary-500/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <Diamond3D size={40} color="#3b82f6" />
-                </Card3D>
-              </Float3D>
+            
               
-              <Float3D intensity={25} className="absolute -bottom-6 -left-6">
-                <Card3D className="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <MorphingShape size={60} shapes={["circle", "hexagon", "star"]} />
-                </Card3D>
-              </Float3D>
-              
-              <Float3D intensity={20} className="absolute top-1/4 -left-10">
+              <Float3D intensity={12} className="absolute -bottom-9 -right-6">
                 <Card3D className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                   <MorphingText 
                     texts={["🎯", "⚡", "🚀", "💡"]} 
@@ -327,20 +316,18 @@ const HeroSection = () => {
                 </Card3D>
               </Float3D>
               
-              {/* Additional 3D elements */}
-              <Float3D intensity={15} className="absolute bottom-1/3 -right-6">
-                <div className="w-12 h-12">
-                  <Diamond3D size={48} color="#8b5cf6" />
-                </div>
+              <Float3D intensity={15} className="absolute top-1/4 -left-10">
+                <Card3D className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <MorphingText 
+                    texts={["🎯", "⚡", "🚀", "💡"]} 
+                    className="text-2xl h-8 w-8 flex items-center justify-center"
+                  />
+                </Card3D>
               </Float3D>
               
-              {/* Liquid morphing background */}
-              <div className="absolute inset-0 -z-10 opacity-30">
-                <LiquidMorph 
-                  colors={["#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"]}
-                  className="w-full h-full"
-                />
-              </div>
+          
+              
+           
             </div>
           </SlideInRight>
         </div>

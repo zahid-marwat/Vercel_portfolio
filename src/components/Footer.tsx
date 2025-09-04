@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail} from 'lucide-react'
 import { motion } from 'framer-motion'
-import { FadeInUp, StaggerContainer } from './animations'
+import { FadeInUp } from './animations'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -98,7 +98,7 @@ const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-white font-semibold">Technologies</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                {['Python & AI/ML', 'Computer Vision', 'Deep Learning', 'Full-Stack Development', 'Cloud Platforms'].map((tech, index) => (
+                {['Python & AI/ML', 'Computer Vision', 'Deep Learning', 'Full-Stack Development'].map((tech, index) => (
                   <motion.li 
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
@@ -154,21 +154,8 @@ const Footer = () => {
         <FadeInUp delay={0.4}>
           <div className="border-t border-white/10 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
             <p className="text-gray-400 text-sm flex items-center">
-              © {currentYear} Zahid Marwat. Made with{' '}
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  color: ['#ef4444', '#dc2626', '#ef4444']
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <Heart className="w-4 h-4 text-red-500 mx-1" />
-              </motion.div>
-              using Next.js & Tailwind CSS
+              © {currentYear} Zahid Marwat. 
+              
             </p>
             <p className="text-gray-400 text-sm">
               All rights reserved.
