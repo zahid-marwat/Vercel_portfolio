@@ -4,12 +4,15 @@ import Link from 'next/link'
 import { Calendar, MapPin, ExternalLink, Award, TrendingUp, Users, Code, Sparkles, Brain, Target, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
+
+// Import optimized background component
+const Squares = dynamic(() => import('@/components/Squares'), { ssr: false })
 
 // Import animation components
 import { Card3D, Text3D, Button3D } from '@/components/animations/3DEffects'
 import { MorphingShape, MorphingText, MorphingIcon, LiquidMorph } from '@/components/animations/MorphingEffects'
 import { FeedbackCard, FeedbackButton, ProgressFeedback } from '@/components/animations/VisualFeedback'
-import DotGrid from '@/components/DotGrid'
 
 export default function ExperiencePage() {
   const experience = [
@@ -135,18 +138,10 @@ export default function ExperiencePage() {
 
   return (
     <div className="min-h-screen pt-20 relative">
-      {/* DotGrid Background */}
-      <div className="fixed inset-0 -z-50">
-        <DotGrid
-          dotSize={5}
-          gap={8}
-          baseColor="rgba(99, 102, 241, 0.3)"
-          activeColor="rgba(99, 102, 241, 0.8)"
-          proximity={90}
-          shockRadius={250}
-          shockStrength={5}
-          resistance={750}
-          returnDuration={1}
+      {/* Optimized Squares Background */}
+      <div className="fixed inset-0 -z-50 opacity-70">
+        <Squares
+          direction="up"
         />
       </div>
       

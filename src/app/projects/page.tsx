@@ -7,7 +7,9 @@ import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText, MorphingIcon } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
-import LightRays from '../../components/LightRays'
+import dynamic from 'next/dynamic'
+
+const Squares = dynamic(() => import('../../components/Squares'), { ssr: false })
 
 export default function ProjectsPage() {
   const projects = [
@@ -236,19 +238,15 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen pt-20 relative">
-      {/* Light Rays Background */}
+      {/* Optimized Squares Background */}
       <div className="fixed inset-0 z-0">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#3b82f6"
-          raysSpeed={1.2}
-          lightSpread={0.6}
-          rayLength={1.8}
-          followMouse={true}
-          mouseInfluence={0.08}
-          noiseAmount={0.05}
-          distortion={0.03}
-          className="opacity-30"
+        <Squares
+          direction="up"
+          speed={0.3}
+          borderColor="rgba(59, 130, 246, 0.12)"
+          squareSize={45}
+          hoverFillColor="rgba(59, 130, 246, 0.06)"
+          frameLimit={30}
         />
       </div>
 

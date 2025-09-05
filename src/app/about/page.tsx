@@ -8,7 +8,9 @@ import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard, ProgressFeedback } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
-import Galaxy from '../../components/Galaxy'
+import dynamic from 'next/dynamic'
+
+const Squares = dynamic(() => import('../../components/Squares'), { ssr: false })
 
 export default function AboutPage() {
   const skills = [
@@ -66,19 +68,15 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen pt-20 relative">
-      {/* Galaxy Background */}
+      {/* Optimized Squares Background */}
       <div className="fixed inset-0 z-0">
-        <Galaxy 
-          mouseRepulsion={true}
-          mouseInteraction={true}
-          density={1.2}
-          glowIntensity={0.4}
-          saturation={0.6}
-          hueShift={220}
-          speed={0.8}
-          twinkleIntensity={0.4}
-          rotationSpeed={0.05}
-          className="opacity-25"
+        <Squares
+          direction="right"
+          speed={0.25}
+          borderColor="rgba(59, 130, 246, 0.08)"
+          squareSize={50}
+          hoverFillColor="rgba(59, 130, 246, 0.03)"
+          frameLimit={30}
         />
       </div>
 

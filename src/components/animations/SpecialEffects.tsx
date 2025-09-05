@@ -72,35 +72,6 @@ export const GlitchEffect = ({ children, className = '' }: SpecialEffectProps) =
   )
 }
 
-// Particle Effect Background
-export const ParticleBackground = () => {
-  const particles = Array.from({ length: 50 }, (_, i) => (
-    <motion.div
-      key={i}
-      className="absolute w-1 h-1 bg-primary-400 rounded-full opacity-20"
-      initial={{
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight
-      }}
-      animate={{
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight
-      }}
-      transition={{
-        duration: Math.random() * 20 + 10,
-        repeatType: "reverse",
-        ease: "linear"
-      }}
-    />
-  ))
-
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {particles}
-    </div>
-  )
-}
-
 // Morphing Shape
 export const MorphingShape = ({ className = '' }: { className?: string }) => {
   return (

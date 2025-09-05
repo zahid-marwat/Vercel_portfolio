@@ -6,8 +6,6 @@ import dynamic from 'next/dynamic'
 // Dynamically import components that use framer-motion to avoid SSR issues
 const Navigation = dynamic(() => import('@/components/Navigation'), { ssr: false })
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
-const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false })
-const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false })
 const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), { ssr: false })
 
 const inter = Inter({ subsets: ['latin'] })
@@ -62,7 +60,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white min-h-screen cursor-none`}>
+      <body className={`${inter.className} bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white min-h-screen`}>
         <div className="relative">
           {/* Enhanced Background Effects */}
           <div className="fixed inset-0 -z-10 overflow-hidden">
@@ -95,12 +93,6 @@ export default function RootLayout({
               }}
             />
           </div>
-          
-          {/* Particle Background */}
-          <ParticleBackground />
-          
-          {/* Custom Cursor */}
-          <CustomCursor />
           
           {/* Scroll Progress */}
           <ScrollProgress />
