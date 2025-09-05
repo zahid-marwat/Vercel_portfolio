@@ -20,7 +20,7 @@ export default function ExperiencePage() {
       company: 'Airloop',
       position: 'Senior Computer Vision Engineer',
       duration: '2022 - Present',
-      location: 'Remote',
+      location: 'Islamabad, Pakistan',
       type: 'Full-time',
       description: 'Leading computer vision projects and AI model development. Responsible for designing and implementing advanced computer vision solutions for various industry applications.',
       achievements: [
@@ -31,9 +31,9 @@ export default function ExperiencePage() {
         'Successfully delivered 15+ AI projects across different domains',
         'Mentored junior developers and established best practices'
       ],
-      technologies: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'Docker', 'AWS', 'Kubernetes', 'MLOps'],
+      technologies: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'MLOps'],
       companyUrl: 'https://airloop.io',
-      companyLogo: '/assets/airloop-logo.png'
+      companyLogo: '/assets/airloop_logo.png'
     }
   ]
 
@@ -53,8 +53,8 @@ export default function ExperiencePage() {
         'Digital Forensics',
         'Risk Assessment and Management'
       ],
-      gpa: 'Current CGPA: 3.8/4.0',
-      logo: '/assets/nust-logo.png',
+      gpa: 'Current CGPA: 3.5/4.0',
+      logo: '/assets/NUST.png',
       website: 'https://nust.edu.pk'
     },
     {
@@ -73,7 +73,7 @@ export default function ExperiencePage() {
         'Software Engineering'
       ],
       gpa: 'CGPA: 3.6/4.0',
-      logo: '/assets/giki-logo.png',
+      logo: '/assets/GIKI.png',
       website: 'https://giki.edu.pk'
     }
   ]
@@ -140,220 +140,210 @@ export default function ExperiencePage() {
     <div className="min-h-screen pt-20 relative">
       {/* Optimized Squares Background */}
       <div className="fixed inset-0 -z-50 opacity-70">
-        <Squares
-          direction="up"
-        />
+      <Squares
+        direction="up"
+      />
       </div>
       
       {/* Morphing Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <MorphingShape
-          shapes={["circle", "square", "triangle"]}
-          className="absolute top-20 right-10 w-64 h-64 opacity-20"
-        />
-        <LiquidMorph
-          className="absolute bottom-20 left-10 w-96 h-96 opacity-10"
-        />
+      <MorphingShape
+        shapes={["circle", "square", "triangle"]}
+        className="absolute top-20 right-10 w-64 h-64 opacity-20"
+      />
+      <LiquidMorph
+        className="absolute bottom-20 left-10 w-96 h-96 opacity-10"
+      />
       </div>
 
       {/* Hero Section */}
       <section className="py-20 lg:py-32 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center mb-16"
-          >
-            <Text3D
-              text="My Experience"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text"
-              depth={3}
-            />
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-300 leading-relaxed"
-            >
-              <MorphingText
-                texts={[
-                  "Professional journey, education, and technical expertise",
-                  "Building innovative solutions with cutting-edge technology",
-                  "Transforming ideas into reality through code and creativity"
-                ]}
-                className="inline-block"
-              />
-            </motion.p>
-          </motion.div>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-3xl mx-auto text-center mb-16"
+        >
+        <Text3D
+          text="My Experience"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text"
+          depth={3}
+        />
+        <motion.p 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xl md:text-2xl text-gray-300 leading-relaxed"
+        >
+          <MorphingText
+          texts={[
+            "Professional journey, education, and technical expertise",
+            "Building innovative solutions with cutting-edge technology",
+            "Transforming ideas into reality through code and creativity"
+          ]}
+          className="inline-block"
+          />
+        </motion.p>
+        </motion.div>
+      </div>
       </section>
 
       {/* Professional Experience */}
       <section className="pb-20 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <Text3D
-                text="Professional Experience"
-                className="text-3xl md:text-4xl font-bold mb-4"
-                depth={2}
-              />
-              <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-purple-500 mx-auto rounded-full"></div>
-            </motion.div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <Text3D
+          text="Professional Experience"
+          className="text-3xl md:text-4xl font-bold mb-4"
+          depth={2}
+          />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-purple-500 mx-auto rounded-full"></div>
+        </motion.div>
 
-            <div className="space-y-8">
-              {experience.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+        <div className="space-y-8">
+          {experience.map((exp, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <Card3D className="group cursor-pointer">
+            <FeedbackCard className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+              <div className="flex-1 mb-6 lg:mb-0">
+                <div className="flex items-start justify-between mb-4">
+                <div>
+                  <Text3D
+                  text={exp.position}
+                  className="text-2xl font-bold text-white mb-2"
+                  depth={1}
+                  />
+                  <div className="flex items-center space-x-4 text-primary-400 mb-2">
+                
+                  <span>•</span>
+                  <span>{exp.type}</span>
+                  </div>
+                  <div className="flex items-center space-x-4 text-gray-400 text-sm mb-4">
+                  <div className="flex items-center space-x-1">
+                    <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    >
+                    <Calendar className="w-4 h-4" />
+                    </motion.div>
+                    <span>{exp.duration}</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    >
+                    <MapPin className="w-4 h-4" />
+                    </motion.div>
+                    <span>{exp.location}</span>
+                  </div>
+                  </div>
+                </div>
+                {/* Logo clickable for companyUrl */}
+                <Link
+                  href={exp.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-16 h-16 bg-primary-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm border border-primary-500/30 flex-shrink-0 ml-4 transition-transform hover:scale-105"
                 >
-                  <Card3D className="group cursor-pointer">
-                    <FeedbackCard className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-                        <div className="flex-1 mb-6 lg:mb-0">
-                          <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <Text3D
-                                text={exp.position}
-                                className="text-2xl font-bold text-white mb-2"
-                                depth={1}
-                              />
-                              <div className="flex items-center space-x-4 text-primary-400 mb-2">
-                                <Link
-                                  href={exp.companyUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-semibold hover:text-primary-300 transition-colors duration-200 flex items-center space-x-2 group"
-                                >
-                                  <MorphingText
-                                    texts={[exp.company]}
-                                    className="inline-block"
-                                  />
-                                  <motion.div
-                                    whileHover={{ scale: 1.2, rotate: 15 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                  >
-                                    <ExternalLink className="w-4 h-4" />
-                                  </motion.div>
-                                </Link>
-                                <span>•</span>
-                                <span>{exp.type}</span>
-                              </div>
-                              <div className="flex items-center space-x-4 text-gray-400 text-sm mb-4">
-                                <div className="flex items-center space-x-1">
-                                  <motion.div
-                                    whileHover={{ scale: 1.2 }}
-                                    transition={{ type: "spring", stiffness: 400 }}
-                                  >
-                                    <Calendar className="w-4 h-4" />
-                                  </motion.div>
-                                  <span>{exp.duration}</span>
-                                </div>
-                                <div className="flex items-center space-x-1">
-                                  <motion.div
-                                    whileHover={{ scale: 1.2 }}
-                                    transition={{ type: "spring", stiffness: 400 }}
-                                  >
-                                    <MapPin className="w-4 h-4" />
-                                  </motion.div>
-                                  <span>{exp.location}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="w-16 h-16 bg-primary-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm border border-primary-500/30 flex-shrink-0 ml-4">
-                              <motion.span 
-                                className="text-2xl"
-                                whileHover={{ scale: 1.2 }}
-                                transition={{ type: "spring", stiffness: 400 }}
-                              >
-                                🏢
-                              </motion.span>
-                            </div>
-                          </div>
+                  <motion.img
+                  src={exp.companyLogo}
+                  alt={`${exp.company} logo`}
+                  className="w-12 h-12 object-contain"
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  />
+                </Link>
+                </div>
 
-                          <motion.p 
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-gray-300 mb-6 leading-relaxed"
-                          >
-                            {exp.description}
-                          </motion.p>
+                <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-gray-300 mb-6 leading-relaxed"
+                >
+                {exp.description}
+                </motion.p>
 
-                          <div className="mb-6">
-                            <Text3D
-                              text="Key Achievements:"
-                              className="text-lg font-semibold text-white mb-4"
-                              depth={1}
-                            />
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {exp.achievements.map((achievement, achIndex) => (
-                                <motion.li 
-                                  key={achIndex} 
-                                  initial={{ opacity: 0, x: -20 }}
-                                  whileInView={{ opacity: 1, x: 0 }}
-                                  viewport={{ once: true }}
-                                  transition={{ duration: 0.4, delay: achIndex * 0.1 }}
-                                  className="flex items-start space-x-3 group"
-                                >
-                                  <motion.div 
-                                    className="w-2 h-2 bg-primary-400 rounded-full mt-2 flex-shrink-0"
-                                    whileHover={{ scale: 1.5 }}
-                                    transition={{ type: "spring", stiffness: 400 }}
-                                  ></motion.div>
-                                  <span className="text-gray-300 text-sm group-hover:text-white transition-colors duration-200">{achievement}</span>
-                                </motion.li>
-                              ))}
-                            </ul>
-                          </div>
+                <div className="mb-6">
+                <Text3D
+                  text="Key Achievements:"
+                  className="text-lg font-semibold text-white mb-4"
+                  depth={1}
+                />
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {exp.achievements.map((achievement, achIndex) => (
+                  <motion.li 
+                    key={achIndex} 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: achIndex * 0.1 }}
+                    className="flex items-start space-x-3 group"
+                  >
+                    <motion.div 
+                    className="w-2 h-2 bg-primary-400 rounded-full mt-2 flex-shrink-0"
+                    whileHover={{ scale: 1.5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    ></motion.div>
+                    <span className="text-gray-300 text-sm group-hover:text-white transition-colors duration-200">{achievement}</span>
+                  </motion.li>
+                  ))}
+                </ul>
+                </div>
 
-                          <div>
-                            <Text3D
-                              text="Technologies Used:"
-                              className="text-lg font-semibold text-white mb-3"
-                              depth={1}
-                            />
-                            <div className="flex flex-wrap gap-2">
-                              {exp.technologies.map((tech, techIndex) => (
-                                <motion.span
-                                  key={techIndex}
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  whileInView={{ opacity: 1, scale: 1 }}
-                                  viewport={{ once: true }}
-                                  whileHover={{ scale: 1.05, y: -2 }}
-                                  transition={{ 
-                                    duration: 0.3, 
-                                    delay: techIndex * 0.05,
-                                    type: "spring",
-                                    stiffness: 400 
-                                  }}
-                                  className="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm font-medium border border-primary-500/30 hover:border-primary-400 cursor-pointer"
-                                >
-                                  {tech}
-                                </motion.span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </FeedbackCard>
-                  </Card3D>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                <div>
+                <Text3D
+                  text="Technologies Used:"
+                  className="text-lg font-semibold text-white mb-3"
+                  depth={1}
+                />
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech, techIndex) => (
+                  <motion.span
+                    key={techIndex}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    transition={{ 
+                    duration: 0.3, 
+                    delay: techIndex * 0.05,
+                    type: "spring",
+                    stiffness: 400 
+                    }}
+                    className="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm font-medium border border-primary-500/30 hover:border-primary-400 cursor-pointer"
+                  >
+                    {tech}
+                  </motion.span>
+                  ))}
+                </div>
+                </div>
+              </div>
+              </div>
+            </FeedbackCard>
+            </Card3D>
+          </motion.div>
+          ))}
         </div>
+        </div>
+      </div>
       </section>
 
       {/* Education */}
@@ -394,35 +384,28 @@ export default function ExperiencePage() {
                               className="text-xl font-bold text-white pr-4"
                               depth={1}
                             />
-                            <motion.div 
-                              className={`px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
-                                edu.status === 'Current' 
-                                  ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                                  : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                              }`}
-                              whileHover={{ scale: 1.05 }}
-                              transition={{ type: "spring", stiffness: 400 }}
-                            >
-                              {edu.status}
-                            </motion.div>
+                            <div className="flex flex-col items-center space-y-2">
+                              <motion.img
+                                src={edu.logo}
+                                alt={`${edu.institution} logo`}
+                                className="w-14 h-14 object-contain rounded-md border border-gray-700 bg-white/10"
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                              />
+                              <motion.div 
+                                className={`px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
+                                  edu.status === 'Current' 
+                                    ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                                    : 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+                                }`}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                              >
+                                {edu.status}
+                              </motion.div>
+                            </div>
                           </div>
-                          <Link
-                            href={edu.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary-400 font-semibold hover:text-primary-300 transition-colors duration-200 flex items-center space-x-2 mb-2 group"
-                          >
-                            <MorphingText
-                              texts={[edu.institution]}
-                              className="inline-block"
-                            />
-                            <motion.div
-                              whileHover={{ scale: 1.2, rotate: 15 }}
-                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                            </motion.div>
-                          </Link>
+                   
                           <div className="flex items-center space-x-4 text-gray-400 text-sm mb-4">
                             <div className="flex items-center space-x-1">
                               <motion.div

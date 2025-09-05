@@ -20,8 +20,6 @@ export default function AboutPage() {
     { name: 'OpenCV', level: 92, category: 'Computer Vision' },
     { name: 'JavaScript', level: 85, category: 'Programming' },
     { name: 'React', level: 80, category: 'Frontend' },
-    { name: 'Next.js', level: 85, category: 'Frontend' },
-    { name: 'Node.js', level: 75, category: 'Backend' },
   ]
 
   const education = [
@@ -31,15 +29,15 @@ export default function AboutPage() {
       duration: '2024 - 2026',
       status: 'Current',
       description: 'Specialized in information security, secure software development, and AI applications in cybersecurity.',
-      logo: '/assets/nust-logo.png'
+      logo: '/assets/NUST.png'
     },
     {
       degree: 'Bachelor of Science in Electrical Engineering',
       institution: 'Ghulam Ishaq Khan Institute (GIKI)',
       duration: '2018 - 2022',
       status: 'Completed',
-      description: 'Focus on electrical systems, software development, and data structures. Graduated with distinction.',
-      logo: '/assets/giki-logo.png'
+      description: 'Focus on electrical systems, software development, and data structures.',
+      logo: '/assets/GIKI.png'
     }
   ]
 
@@ -130,14 +128,6 @@ export default function AboutPage() {
                         />
                       </div>
                     
-                    
-                    {/* 3D Floating Elements */}
-                    <div className="absolute -top-4 -right-4">
-                      
-                    </div>
-                    <div className="absolute -bottom-4 -left-4">
-                      
-                    </div>
                   </div>
                 </Card3D>
               </div>
@@ -199,6 +189,8 @@ export default function AboutPage() {
                         <Calendar className="w-4 h-4 text-blue-400" />
                         <span className="text-blue-400 font-semibold">Experience</span>
                       </div>
+                      <div className="text-white">4 Years</div>
+                      
                       <MorphingText
                         texts={["3+ Years", "5+ Years", "3+ Years"]}
                         className="text-white"
@@ -290,62 +282,76 @@ export default function AboutPage() {
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <Text3D 
-                text="Education"
-                className="text-3xl md:text-4xl font-bold mb-6"
-              />
-              
-                <p className="text-lg text-gray-300">
-                  Academic background and qualifications
-                </p>
-              
-            </div>
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <Text3D 
+            text="Education"
+            className="text-3xl md:text-4xl font-bold mb-6"
+          />
+          <p className="text-lg text-gray-300">
+            Academic background and qualifications
+          </p>
+        </div>
           </FadeInUp>
-
           <div className="max-w-4xl mx-auto space-y-8">
-            <StaggerContainer staggerDelay={0.2}>
-              {education.map((edu, index) => (
-                <Card3D key={index}>
-                  <FeedbackCard
-                    className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300"
-                  >
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-                      <div className="flex-1 mb-4 lg:mb-0">
-                        <div className="flex items-start justify-between mb-3">
-                          <Text3D 
-                            text={edu.degree}
-                            className="text-2xl font-bold text-white"
-                            depth={2}
-                          />
-                          <motion.div 
-                            className={`px-3 py-1 rounded-full text-xs font-medium ${
-                              edu.status === 'Current' 
-                                ? 'bg-green-500/20 text-green-400' 
-                                : 'bg-blue-500/20 text-blue-400'
-                            }`}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            {edu.status}
-                          </motion.div>
-                        </div>
-                        <div className="flex items-center space-x-2 text-primary-400 mb-2">
-                          
-                            <GraduationCap className="w-5 h-5" />
-                          
-                          <span className="font-semibold">{edu.institution}</span>
-                        </div>
-                        <p className="text-gray-400 mb-4">{edu.duration}</p>
-                        
-                          <p className="text-gray-300 leading-relaxed">{edu.description}</p>
-                        
-                      </div>
-                    </div>
-                  </FeedbackCard>
-                </Card3D>
-              ))}
-            </StaggerContainer>
+        <StaggerContainer staggerDelay={0.2}>
+          {education.map((edu, index) => (
+            <Card3D key={index}>
+          <FeedbackCard
+            className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300"
+          >
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+              <div className="flex-1 mb-4 lg:mb-0">
+            <div className="flex items-start justify-between mb-3">
+              <Text3D 
+                text={edu.degree}
+                className="text-2xl font-bold text-white"
+                depth={2}
+              />
+            </div>
+            <div className="flex items-center space-x-2 text-primary-400 mb-2">
+              <GraduationCap className="w-5 h-5" />
+              <span className="font-semibold">{edu.institution}</span>
+            </div>
+            <p className="text-gray-400 mb-4">{edu.duration}</p>
+            <p className="text-gray-300 leading-relaxed">{edu.description}</p>
+              </div>
+              <div className="flex-shrink-0 lg:ml-8 flex flex-col items-center justify-center">
+            <Link
+              href={edu.institution === 'National University of Sciences and Technology (NUST)'
+                ? 'https://nust.edu.pk/'
+                : edu.institution === 'Ghulam Ishaq Khan Institute (GIKI)'
+              ? 'https://giki.edu.pk/'
+              : '#'
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <Image
+                src={edu.logo}
+                alt={`${edu.institution} logo`}
+                width={64}
+                height={64}
+                className="w-16 h-16 object-contain rounded-xl border border-white/10 bg-white/10"
+              />
+            </Link>
+            <motion.div 
+              className={`mt-2 px-3 py-1 rounded-full text-xs font-medium ${
+                edu.status === 'Current' 
+              ? 'bg-green-500/20 text-green-400' 
+              : 'bg-blue-500/20 text-blue-400'
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {edu.status}
+            </motion.div>
+              </div>
+            </div>
+          </FeedbackCard>
+            </Card3D>
+          ))}
+        </StaggerContainer>
           </div>
         </div>
       </section>
