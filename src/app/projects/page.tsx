@@ -1,3 +1,4 @@
+
 'use client'
 
 import Link from 'next/link'
@@ -7,6 +8,7 @@ import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
 import { MorphingShape, LiquidMorph, MorphingText, MorphingIcon } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
+import { useEffect, useMemo, useState, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 
 const Squares = dynamic(() => import('../../components/Squares'), { ssr: false })
@@ -19,6 +21,12 @@ export default function ProjectsPage() {
       description: 'A comprehensive real-time face detection and recognition system using deep learning technologies. Built for automated attendance tracking and security applications with high accuracy and performance.',
       longDescription: 'This advanced computer vision system leverages state-of-the-art deep learning models to provide real-time face detection and recognition capabilities. The system can handle multiple faces simultaneously, works in various lighting conditions, and includes features like anti-spoofing and liveness detection.',
       image: '/assets/face-recognition-preview.jpg',
+      images: [
+        '/assets/face-detection-project/5597107_56387-1024x642.jpg',
+        '/assets/face-detection-project/deep-convolutional-network-for-face-detection.jpg',
+        '/assets/face-detection-project/face-detection-people-group-1060x568.jpg',
+        '/assets/face-detection-project/What-Is-a-Facial-Recognition-Attendance-System-1024x576.webp'
+      ],
       technologies: ['Python', 'OpenCV', 'TensorFlow', 'Flask', 'SQLite', 'dlib', 'NumPy'],
       category: 'Computer Vision',
       featured: true,
@@ -55,6 +63,9 @@ export default function ProjectsPage() {
       description: 'Computer vision-based traffic monitoring solution that detects vehicles, counts traffic, estimates speed, and provides comprehensive analytics for smart city applications.',
       longDescription: 'An intelligent traffic monitoring system that uses YOLO object detection and computer vision techniques to analyze traffic patterns, count vehicles, estimate speeds, and provide real-time insights for traffic management.',
       image: '/assets/traffic-monitoring-preview.jpg',
+      images: [
+        '/assets/traffice-monitoring-project/traffic-monitoring-preview.jpg'
+      ],
       technologies: ['Python', 'YOLO', 'OpenCV', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker'],
       category: 'Computer Vision',
       featured: true,
@@ -90,7 +101,12 @@ export default function ProjectsPage() {
       title: 'Modern Portfolio Website',
       description: 'A responsive, modern portfolio website built with Next.js and TypeScript. Features smooth animations, dark theme, SEO optimization, and excellent performance scores.',
       longDescription: 'A cutting-edge portfolio website showcasing modern web development practices with Next.js 14, TypeScript, Tailwind CSS, and advanced animations. Optimized for performance, accessibility, and SEO.',
-      image: '/assets/portfolio-preview.jpg',
+      image: '/assets/portfolio-project/portfolio-preview.svg',
+      images: [
+        '/assets/portfolio-project/portfolio-preview.svg',
+        '/assets/portfolio-project/about-preview.svg',
+        '/assets/portfolio-project/contact-preview.svg'
+      ],
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
       category: 'Web Development',
       featured: true,
@@ -126,7 +142,8 @@ export default function ProjectsPage() {
       title: 'Medical Image Classification System',
       description: 'Deep learning-powered medical image classification system for automated diagnosis assistance. Trained on large datasets with high accuracy for medical professionals.',
       longDescription: 'An advanced medical AI system that assists healthcare professionals in diagnosing medical conditions through automated image analysis using convolutional neural networks and transfer learning.',
-      image: '/assets/medical-ai-preview.jpg',
+  image: '/assets/medical-ai-preview.jpg',
+  images: ['/assets/medical-ai-preview.jpg'],
       technologies: ['Python', 'PyTorch', 'TensorFlow', 'scikit-learn', 'Flask', 'Docker', 'DICOM'],
       category: 'AI & ML',
       featured: false,
@@ -162,7 +179,8 @@ export default function ProjectsPage() {
       title: 'Real-time Object Detection API',
       description: 'High-performance REST API for real-time object detection using YOLO models. Supports batch processing, multiple image formats, and scalable deployment.',
       longDescription: 'A robust and scalable API service that provides real-time object detection capabilities using state-of-the-art YOLO models, designed for integration into various applications and systems.',
-      image: '/assets/object-detection-api-preview.jpg',
+  image: '/assets/object-detection-api-preview.jpg',
+  images: ['/assets/object-detection-api-preview.jpg'],
       technologies: ['Python', 'FastAPI', 'YOLO', 'OpenCV', 'Redis', 'Docker', 'AWS'],
       category: 'AI & ML',
       featured: false,
@@ -198,7 +216,8 @@ export default function ProjectsPage() {
       title: 'Data Analytics Dashboard',
       description: 'Interactive data visualization dashboard built with React and D3.js. Features real-time data updates, multiple chart types, and export capabilities.',
       longDescription: 'A comprehensive analytics dashboard that provides interactive data visualizations, real-time monitoring, and advanced filtering capabilities for business intelligence applications.',
-      image: '/assets/analytics-dashboard-preview.jpg',
+  image: '/assets/analytics-dashboard-preview.jpg',
+  images: ['/assets/analytics-dashboard-preview.jpg'],
       technologies: ['React', 'D3.js', 'Node.js', 'MongoDB', 'Socket.io', 'Chart.js'],
       category: 'Web Development',
       featured: false,
@@ -235,6 +254,58 @@ export default function ProjectsPage() {
 
   const featuredProjects = projects.filter(project => project.featured)
   const allProjects = projects
+
+  // Slideshow Viewer State
+  const [viewerOpen, setViewerOpen] = useState(false)
+  const [viewerProject, setViewerProject] = useState<any | null>(null)
+  const [slideIndex, setSlideIndex] = useState(0)
+
+  const openViewer = useCallback((project: any, startIndex = 0) => {
+    setViewerProject(project)
+    setSlideIndex(startIndex)
+    setViewerOpen(true)
+  }, [])
+
+  const closeViewer = useCallback(() => {
+    setViewerOpen(false)
+    setTimeout(() => setViewerProject(null), 250)
+  }, [])
+
+  const projectImages = useMemo(() => {
+    if (!viewerProject) return [] as string[]
+    const imgs = viewerProject.images && Array.isArray(viewerProject.images) && viewerProject.images.length > 0
+      ? viewerProject.images
+      : viewerProject.image
+        ? [viewerProject.image]
+        : []
+    return imgs
+  }, [viewerProject])
+
+  const nextSlide = useCallback(() => {
+    if (projectImages.length === 0) return
+    setSlideIndex((i) => (i + 1) % projectImages.length)
+  }, [projectImages.length])
+
+  const prevSlide = useCallback(() => {
+    if (projectImages.length === 0) return
+    setSlideIndex((i) => (i - 1 + projectImages.length) % projectImages.length)
+  }, [projectImages.length])
+
+  // Keyboard controls
+  useEffect(() => {
+    if (!viewerOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeViewer()
+      if (e.key === 'ArrowRight') nextSlide()
+      if (e.key === 'ArrowLeft') prevSlide()
+    }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [viewerOpen, closeViewer, nextSlide, prevSlide])
 
   return (
     <div className="min-h-screen pt-20 relative">
@@ -315,10 +386,138 @@ export default function ProjectsPage() {
               </p>
             </div>
           </FadeInUp>
-
+            <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+            {featuredProjects.map((project) => (
+              <div key={project.id} className="h-full cursor-pointer" onClick={() => openViewer(project, 0)}>
+              <Card3D>
+              <FeedbackCard 
+                className="group rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 overflow-hidden h-full"
+              >
+                {/* Project Image */}
+                <div className="relative h-48 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="object-cover w-full h-full"
+                />
+                </div>
+                {/* Project Content */}
+                <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-start justify-between mb-3">
+                  <Text3D 
+                  text={project.title}
+                  className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors duration-300 flex-1"
+                  depth={1}
+                  />
+                  <div className="flex items-center space-x-2 text-xs text-gray-400 ml-2">
+                  <span>{project.year}</span>
+                  <motion.div 
+                    className={`w-2 h-2 rounded-full ${
+                    project.status === 'Live' ? 'bg-green-400' : 
+                    project.status === 'Completed' ? 'bg-blue-400' : 'bg-yellow-400'
+                    }`}
+                    animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{ duration: 2 }}
+                  />
+                  </div>
+                </div>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                {/* Key Features */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-white mb-2">Key Features:</h4>
+                  <ul className="space-y-1">
+                  {project.features.slice(0, 3).map((feature: string, index: number) => (
+                    <motion.li 
+                    key={index} 
+                    className="flex items-start space-x-2"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    >
+                    <motion.div 
+                      className="w-1 h-1 bg-primary-400 rounded-full mt-2 flex-shrink-0"
+                      animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{ duration: 2, delay: index * 0.3 }}
+                    />
+                    <span className="text-gray-400 text-xs">{feature}</span>
+                    </motion.li>
+                  ))}
+                  </ul>
+                </div>
+                {/* Technologies */}
+                <div className="mb-6 flex-1">
+                  <div className="flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 4).map((tech: string, index: number) => (
+                    <motion.span
+                    key={index}
+                    className="px-2 py-1 bg-primary-500/20 text-primary-400 rounded text-xs font-medium cursor-pointer"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      backgroundColor: "rgba(59, 130, 246, 0.3)",
+                      y: -1
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    >
+                    {tech}
+                    </motion.span>
+                  ))}
+                  {project.technologies.length > 4 && (
+                    <motion.span 
+                    className="px-2 py-1 bg-gray-500/20 text-gray-400 rounded text-xs"
+                    whileHover={{ scale: 1.05 }}
+                    >
+                    +{project.technologies.length - 4} more
+                    </motion.span>
+                  )}
+                  </div>
+                </div>
+                {/* Action Buttons */}
+                <div className="flex space-x-3 mt-auto">
+                  <Button3D className="flex-1 bg-primary-500 hover:bg-primary-600 text-white text-center py-2 rounded-lg text-sm font-medium">
+                  <Link
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full"
+                    onClick={(e) => e.stopPropagation()}
+                    data-cursor-text="View live demo"
+                    data-cursor-variant="pointer"
+                  >
+                    Live Demo
+                  </Link>
+                  </Button3D>
+                  <Button3D className="flex-1 bg-white/10 hover:bg-white/20 text-white text-center py-2 rounded-lg text-sm font-medium">
+                  <Link
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full"
+                    onClick={(e) => e.stopPropagation()}
+                    data-cursor-text="View source code"
+                    data-cursor-variant="grab"
+                  >
+                    View Code
+                  </Link>
+                  </Button3D>
+                </div>
+                </div>
+              </FeedbackCard>
+              </Card3D>
+              </div>
+            ))}
+            </StaggerContainer>
           <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
             {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} featured={true} />
+              <ProjectCard key={project.id} project={project} featured={true} onOpen={openViewer}></ProjectCard>
             ))}
           </StaggerContainer>
         </div>
@@ -341,7 +540,7 @@ export default function ProjectsPage() {
 
           <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {allProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} featured={false} />
+              <ProjectCard key={project.id} project={project} featured={false} onOpen={openViewer} />
             ))}
           </StaggerContainer>
         </div>
@@ -389,14 +588,28 @@ export default function ProjectsPage() {
           </FadeInUp>
         </div>
       </section>
+      {/* Modal Mount */}
+      <ProjectViewerModal 
+        open={viewerOpen}
+        project={viewerProject}
+        images={projectImages}
+        index={slideIndex}
+        onClose={closeViewer}
+        onPrev={prevSlide}
+        onNext={nextSlide}
+        onJump={(i) => setSlideIndex(i)}
+      />
     </div>
   )
 }
 
-function ProjectCard({ project, featured }: { project: any; featured: boolean }) {
+function ProjectCard({ project, featured, onOpen }: { project: any; featured: boolean; onOpen: (p: any) => void }) {
   return (
-    <Card3D>
-      <FeedbackCard className="group rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 overflow-hidden h-full">
+    <div className="cursor-pointer" onClick={() => onOpen(project)}>
+      <Card3D>
+      <FeedbackCard 
+        className="group rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 overflow-hidden h-full"
+      >
         {/* Project Image */}
         <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-blue-500/20 overflow-hidden">
           <LiquidMorph className="absolute inset-0 bg-dark-800/50" />
@@ -431,24 +644,26 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
             whileHover={{ scale: 1, y: 0 }}
           >
             <div className="flex space-x-2">
-              <Button3D className="w-8 h-8 bg-primary-500 hover:bg-primary-600 rounded-full p-0">
+        <Button3D className="w-8 h-8 bg-primary-500 hover:bg-primary-600 rounded-full p-0">
                 <Link
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full h-full flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
                   data-cursor-text="View live demo"
                   data-cursor-variant="pointer"
                 >
                   <ExternalLink className="w-4 h-4 text-white" />
                 </Link>
               </Button3D>
-              <Button3D className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full p-0">
+        <Button3D className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full p-0">
                 <Link
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full h-full flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
                   data-cursor-text="View source code"
                   data-cursor-variant="grab"
                 >
@@ -544,24 +759,26 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
 
           {/* Action Buttons */}
           <div className="flex space-x-3 mt-auto">
-            <Button3D className="flex-1 bg-primary-500 hover:bg-primary-600 text-white text-center py-2 rounded-lg text-sm font-medium">
+      <Button3D className="flex-1 bg-primary-500 hover:bg-primary-600 text-white text-center py-2 rounded-lg text-sm font-medium">
               <Link
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full h-full"
+        onClick={(e) => e.stopPropagation()}
                 data-cursor-text="View live demo"
                 data-cursor-variant="pointer"
               >
                 Live Demo
               </Link>
             </Button3D>
-            <Button3D className="flex-1 bg-white/10 hover:bg-white/20 text-white text-center py-2 rounded-lg text-sm font-medium">
+      <Button3D className="flex-1 bg-white/10 hover:bg-white/20 text-white text-center py-2 rounded-lg text-sm font-medium">
               <Link
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full h-full"
+        onClick={(e) => e.stopPropagation()}
                 data-cursor-text="View source code"
                 data-cursor-variant="grab"
               >
@@ -571,6 +788,108 @@ function ProjectCard({ project, featured }: { project: any; featured: boolean })
           </div>
         </div>
       </FeedbackCard>
-    </Card3D>
+  </Card3D>
+  </div>
   )
 }
+
+// Fullscreen Project Viewer Modal
+function ProjectViewerModal({
+  open,
+  project,
+  images,
+  index,
+  onClose,
+  onPrev,
+  onNext,
+  onJump
+}: {
+  open: boolean;
+  project: any | null;
+  images: string[];
+  index: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  onJump: (i: number) => void;
+}) {
+  if (!open || !project) return null
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+
+      {/* Content */}
+      <motion.div
+        className="relative w-[95vw] max-w-6xl h-[85vh] bg-dark-900 rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+        initial={{ y: 20, scale: 0.98 }}
+        animate={{ y: 0, scale: 1 }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <span className="text-white font-semibold">{project.title}</span>
+            <span className="px-2 py-0.5 rounded bg-primary-500/20 text-primary-300 text-xs">{project.category}</span>
+          </div>
+          <button className="text-gray-300 hover:text-white px-3 py-1.5 rounded bg-white/5 hover:bg-white/10" onClick={onClose}>Close</button>
+        </div>
+
+        {/* Slideshow */}
+        <div className="relative h-[calc(85vh-150px)] bg-black">
+          {images.length > 0 ? (
+            <img
+              key={images[index]}
+              src={images[index]}
+              alt={`${project.title} - ${index + 1}`}
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+          ) : (
+            <div className="h-full flex items-center justify-center text-gray-400">No images available</div>
+          )}
+
+          {/* Controls */}
+          {images.length > 1 && (
+            <>
+              <button
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center"
+                onClick={onPrev}
+                aria-label="Previous"
+              >
+                ‹
+              </button>
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center"
+                onClick={onNext}
+                aria-label="Next"
+              >
+                ›
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Thumbnails */}
+        {images.length > 1 && (
+          <div className="p-4 border-t border-white/10 overflow-x-auto">
+            <div className="flex gap-3">
+              {images.map((src, i) => (
+                <button key={src + i} className={`relative h-16 w-24 rounded overflow-hidden border ${i === index ? 'border-primary-500' : 'border-white/10'}`} onClick={() => onJump(i)}>
+                  <img src={src} alt={`thumb ${i + 1}`} className="w-full h-full object-cover" />
+                  {i === index && <span className="absolute inset-0 ring-2 ring-primary-500/60 pointer-events-none" />}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  )
+}
+
+// Mount the modal at the end of the page component render
+// Note: We append it directly below in the file by returning an extra fragment.
