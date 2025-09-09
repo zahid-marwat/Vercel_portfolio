@@ -16,16 +16,105 @@ const Squares = dynamic(() => import('../../components/Squares'), { ssr: false }
 export default function ProjectsPage() {
   const projects = [
     {
+      id: 0,
+      title: 'Road Assets Condition Index',
+      description: 'Detects roadside assets, determines their Asset Condition Index (ACI), location, and performs object detection and condition assessment.',
+      longDescription: 'A computer vision solution for smart infrastructure management. The system automatically detects various roadside assets (signs, barriers, lights, etc.), estimates their location using GPS metadata, and computes an Asset Condition Index (ACI) based on visual analysis. Enables authorities to monitor asset health and prioritize maintenance.',
+      image: '/assets/road-assets-aci/1.jpg',
+      images: [
+        '/assets/road-assets-aci/1.jpg',
+        '/assets/road-assets-aci/2.jpg',
+        '/assets/road-assets-aci/3.jpg',
+        '/assets/road-assets-aci/4.jpg',
+        '/assets/road-assets-aci/5.jpg',
+        '/assets/road-assets-aci/6.jpg',
+        '/assets/road-assets-aci/7.jpg',
+        '/assets/road-assets-aci/8.jpg',
+      ],
+      technologies: ['Python', 'YOLO', 'OpenCV', 'FastAPI', 'GeoPandas', 'TensorFlow', 'Docker'],
+      category: 'Computer Vision',
+      featured: true,
+      features: [
+        'Roadside asset detection (signs, barriers, lights, etc.)',
+        'Asset Condition Index (ACI) calculation',
+        'GPS-based location tagging',
+        'Object detection and classification',
+        'Condition assessment using deep learning',
+        'RESTful API for integration',
+        'Dashboard for asset monitoring'
+      ],
+      challenges: [
+        'Accurate detection of diverse asset types',
+        'Reliable condition scoring from images',
+        'Integrating geospatial data with vision outputs',
+        'Scaling for large road networks'
+      ],
+      results: [
+        'Automated asset inventory creation',
+        'Improved maintenance prioritization',
+        'Reduced manual inspection costs',
+        'Deployed in pilot smart city projects'
+      ],
+      liveUrl: 'https://road-assets-aci-demo.vercel.app',
+      githubUrl: 'https://github.com/zahid-marwat/road-assets-condition-index',
+      status: 'Completed',
+      year: '2024'
+    },
+    {
+      id: 7,
+      title: 'Road Cracks Detection & PCI Assessment',
+      description: 'Detects and categorizes road cracks, computes Pavement Condition Index (PCI), and recommends feasible maintenance strategies with detailed bill of quantities.',
+      longDescription: 'An AI-powered solution for automated road crack detection and classification using computer vision. The system analyzes road surface images, identifies crack types (longitudinal, transverse, alligator, etc.), calculates the Pavement Condition Index (PCI), and suggests optimal maintenance or construction strategies. It also generates a detailed bill of quantities for repair planning.',
+      image: '/assets/cracks-project/1.png',
+      images: [
+        '/assets/cracks-project/1.png',
+        '/assets/cracks-project/2.png',
+        '/assets/cracks-project/3.png',
+        '/assets/cracks-project/4.png',
+        '/assets/cracks-project/5.png',
+        '/assets/cracks-project/6.png',
+        '/assets/cracks-project/7.png'
+      ],
+      technologies: ['Python', 'Faster RCNN', 'OpenCV', 'TensorFlow', 'FastAPI', 'GeoPandas', 'YOLO'],
+      category: 'Computer Vision',
+      featured: true,
+      features: [
+        'Automated road crack detection and categorization',
+        'PCI (Pavement Condition Index) calculation',
+        'Maintenance strategy recommendation',
+        'Detailed bill of quantities generation',
+        'Geospatial mapping of crack locations',
+        'RESTful API for integration',
+        'Dashboard for visualization and reporting'
+      ],
+      challenges: [
+        'Accurate crack type classification',
+        'Reliable PCI scoring from image data',
+        'Generating actionable maintenance plans',
+        'Integrating with GIS and asset management systems'
+      ],
+      results: [
+        'Automated PCI assessment for large road networks',
+        'Optimized maintenance planning and budgeting',
+        'Reduced manual survey costs',
+        'Successfully piloted in municipal infrastructure projects'
+      ],
+      liveUrl: 'https://road-cracks-detection-demo.vercel.app',
+      githubUrl: 'https://github.com/zahid-marwat/road-cracks-detection',
+      status: 'Completed',
+      year: '2024'
+    },
+    {
       id: 1,
       title: 'AI-Powered Face Recognition System',
       description: 'A comprehensive real-time face detection and recognition system using deep learning technologies. Built for automated attendance tracking and security applications with high accuracy and performance.',
       longDescription: 'This advanced computer vision system leverages state-of-the-art deep learning models to provide real-time face detection and recognition capabilities. The system can handle multiple faces simultaneously, works in various lighting conditions, and includes features like anti-spoofing and liveness detection.',
-      image: '/assets/face-recognition-preview.jpg',
+      image: '/assets/face-detection-project/4.webp',
       images: [
-        '/assets/face-detection-project/5597107_56387-1024x642.jpg',
-        '/assets/face-detection-project/deep-convolutional-network-for-face-detection.jpg',
-        '/assets/face-detection-project/face-detection-people-group-1060x568.jpg',
-        '/assets/face-detection-project/What-Is-a-Facial-Recognition-Attendance-System-1024x576.webp'
+        '/assets/face-detection-project/1.jpg',
+        '/assets/face-detection-project/2.jpg',
+        '/assets/face-detection-project/3.jpg',
+        '/assets/face-detection-project/4.webp'
       ],
       technologies: ['Python', 'OpenCV', 'TensorFlow', 'Flask', 'SQLite', 'dlib', 'NumPy'],
       category: 'Computer Vision',
@@ -62,9 +151,9 @@ export default function ProjectsPage() {
       title: 'Intelligent Traffic Monitoring System',
       description: 'Computer vision-based traffic monitoring solution that detects vehicles, counts traffic, estimates speed, and provides comprehensive analytics for smart city applications.',
       longDescription: 'An intelligent traffic monitoring system that uses YOLO object detection and computer vision techniques to analyze traffic patterns, count vehicles, estimate speeds, and provide real-time insights for traffic management.',
-      image: '/assets/traffic-monitoring-preview.jpg',
+      image: '/assets/traffice-monitoring-project/1.jpg',
       images: [
-        '/assets/traffice-monitoring-project/traffic-monitoring-preview.jpg'
+        '/assets/traffice-monitoring-project/1.jpg'
       ],
       technologies: ['Python', 'YOLO', 'OpenCV', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker'],
       category: 'Computer Vision',
@@ -101,11 +190,11 @@ export default function ProjectsPage() {
       title: 'Modern Portfolio Website',
       description: 'A responsive, modern portfolio website built with Next.js and TypeScript. Features smooth animations, dark theme, SEO optimization, and excellent performance scores.',
       longDescription: 'A cutting-edge portfolio website showcasing modern web development practices with Next.js 14, TypeScript, Tailwind CSS, and advanced animations. Optimized for performance, accessibility, and SEO.',
-      image: '/assets/portfolio-project/portfolio-preview.svg',
+      image: '/assets/portfolio-project/1.svg',
       images: [
-        '/assets/portfolio-project/portfolio-preview.svg',
-        '/assets/portfolio-project/about-preview.svg',
-        '/assets/portfolio-project/contact-preview.svg'
+        '/assets/portfolio-project/1.svg',
+        '/assets/portfolio-project/2.svg',
+        '/assets/portfolio-project/3.svg'
       ],
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
       category: 'Web Development',

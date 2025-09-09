@@ -80,36 +80,121 @@ export default function ExperiencePage() {
 
   const certifications = [
     {
-      title: 'TensorFlow Developer Certificate',
-      issuer: 'Google',
-      date: '2023',
-      description: 'Demonstrated proficiency in building and training neural networks using TensorFlow',
-      credentialId: 'TF-2023-CV-001',
-      skills: ['TensorFlow', 'Deep Learning', 'Neural Networks', 'Computer Vision']
+      title: 'Introduction to Cybersecurity',
+      issuer: 'Cisco',
+      issuerLogo: '/assets/logos/cisco.png',
+      date: 'Nov 2024',
+      description:
+        'Demonstrates introductory knowledge of cybersecurity, global implications of cyber threats, vulnerabilities, threat detection and defense.',
+      credentialId: 'NIL',
+      skills: [
+        'Cyber Best Practices',
+        'Cybersecurity',
+        'Network Vulnerabilities',
+        'Privacy And Data Confidentiality',
+        'Threat Detection'
+      ],
+      url: 'https://www.credly.com/badges/0e4c8c6e-2e4d-4e6c-8e6e-8e6e8e6e8e6e/public_url'
     },
     {
-      title: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services',
-      date: '2023',
-      description: 'Expertise in designing distributed systems on AWS platform',
-      credentialId: 'AWS-SAA-2023-001',
-      skills: ['AWS', 'Cloud Architecture', 'DevOps', 'Scalability']
-    },
-    {
-      title: 'Deep Learning Specialization',
+      title: 'Machine Learning',
       issuer: 'DeepLearning.AI',
-      date: '2022',
-      description: 'Comprehensive understanding of deep learning concepts and applications',
-      credentialId: 'DL-SPEC-2022-001',
-      skills: ['Deep Learning', 'CNNs', 'RNNs', 'PyTorch', 'Keras']
+      issuerLogo: '/assets/logos/deeplearningai.png',
+      date: 'Dec 2023',
+      description: 'Demonstrated proficiency in machine learning concepts and applications.',
+      credentialId: 'GHQJ6TG2WZNP',
+      skills: ['Machine Learning'],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/GHQJ6TG2WZNP'
     },
     {
-      title: 'Computer Vision Nanodegree',
-      issuer: 'Udacity',
-      date: '2022',
-      description: 'Advanced computer vision techniques and real-world applications',
-      credentialId: 'UD-CV-2022-001',
-      skills: ['OpenCV', 'Image Processing', 'Object Detection', 'Face Recognition']
+      title: 'AI For Everyone',
+      issuer: 'DeepLearning.AI',
+      issuerLogo: '/assets/logos/deeplearningai.png',
+      date: 'Aug 2023',
+      description: 'Understanding AI concepts and their impact on society and business.',
+      credentialId: 'PAQ83ELPAMEQ',
+      skills: ['Artificial Intelligence (AI)'],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/PAQ83ELPAMEQ'
+    },
+    {
+      title: 'Analyze Data to Answer Questions',
+      issuer: 'Coursera',
+      issuerLogo: '/assets/logos/coursera.png',
+      date: 'Jun 2023',
+      description: 'Skills in data analysis using SQL, Google BigQuery, and Google Sheets.',
+      credentialId: 'U3V9RKJG3GP3',
+      skills: ['Data Analysis', 'SQL', 'Google BigQuery', 'Connected sheets', 'Google Sheets'],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/U3V9RKJG3GP3'
+    },
+    {
+      title: 'Process Data from Dirty to Clean',
+      issuer: 'Coursera',
+      issuerLogo: '/assets/logos/coursera.png',
+      date: 'May 2023',
+      description: 'Expertise in cleaning and preparing data for analysis.',
+      credentialId: '65E9RV2K5Q2M',
+      skills: ['Data Analysis', 'SQL', 'Google BigQuery', 'Data Cleaning', 'Google Sheets'],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/65E9RV2K5Q2M'
+    },
+    {
+      title: 'Ask Questions to Make Data-Driven Decisions',
+      issuer: 'Coursera',
+      issuerLogo: '/assets/logos/coursera.png',
+      date: 'Oct 2022',
+      description: 'Learned to ask effective questions for data-driven decision making.',
+      credentialId: 'LDG8VU5DCYNX',
+      skills: [],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/LDG8VU5DCYNX'
+    },
+    {
+      title: 'Foundations: Data, Data, Everywhere',
+      issuer: 'Coursera',
+      issuerLogo: '/assets/logos/coursera.png',
+      date: 'Oct 2022',
+      description: 'Fundamental concepts of data and its applications.',
+      credentialId: 'GTL7QZA2RWP3',
+      skills: [],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/GTL7QZA2RWP3'
+    },
+    {
+      title: 'One Week Training on Python Workshop',
+      issuer: 'Dice Analytics',
+      issuerLogo: '/assets/logos/dice_analytics.png',
+      date: 'Dec 2021',
+      description: 'Hands-on training in Python programming.',
+      credentialId: '',
+      skills: ['Python'],
+      url: ''
+    },
+    {
+      title: 'Getting Started with Google Sheets',
+      issuer: 'Coursera',
+      issuerLogo: '/assets/logos/coursera.png',
+      date: 'Sep 2021',
+      description: 'Introduction to Google Sheets for data management.',
+      credentialId: '76PMED2V5ACL',
+      skills: ['Google Sheets'],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/76PMED2V5ACL'
+    },
+    {
+      title: 'Programming for Everybody (Getting Started with Python)',
+      issuer: 'Coursera',
+      issuerLogo: '/assets/logos/coursera.png',
+      date: 'Aug 2021',
+      description: 'Basics of Python programming language.',
+      credentialId: 'G7PPS7H6TV4G',
+      skills: ['Python'],
+      url: 'https://www.coursera.org/account/accomplishments/certificate/G7PPS7H6TV4G'
+    },
+    {
+      title: 'Google Certified The Fundamentals of Digital Marketing',
+      issuer: 'Google',
+      issuerLogo: '/assets/logos/google.png',
+      date: 'Dec 2020',
+      description: 'Fundamental concepts of digital marketing.',
+      credentialId: '7TW 2F2 C34',
+      skills: [],
+      url: 'https://skillshop.exceedlms.com/student/award/7TW2F2C34'
     }
   ]
 
@@ -540,18 +625,18 @@ export default function ExperiencePage() {
                             className="text-lg font-bold text-white mb-1"
                             depth={1}
                           />
-                          <motion.p 
-                            className="text-primary-400 font-semibold text-sm mb-1"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ type: "spring", stiffness: 400 }}
-                          >
-                            <MorphingText
-                              texts={[cert.issuer]}
-                              className="inline-block"
+                          <div className="flex items-center space-x-2 mb-2">
+                            <motion.img
+                              src={cert.issuerLogo}
+                              alt={`${cert.issuer} logo`}
+                              className="w-7 h-7 object-contain rounded bg-white/10 border border-gray-700"
+                              whileHover={{ scale: 1.1 }}
+                              transition={{ type: "spring", stiffness: 400 }}
                             />
-                          </motion.p>
+                            <span className="text-primary-400 font-semibold text-sm">{cert.issuer}</span>
+                          </div>
                           <motion.p 
-                            className="text-gray-400 text-sm mb-3"
+                            className="text-gray-400 text-sm mb-2"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
@@ -569,7 +654,6 @@ export default function ExperiencePage() {
                           </motion.div>
                         </div>
                       </div>
-                      
                       <motion.p 
                         className="text-gray-300 text-sm mb-4 leading-relaxed"
                         initial={{ opacity: 0 }}
@@ -579,7 +663,6 @@ export default function ExperiencePage() {
                       >
                         {cert.description}
                       </motion.p>
-                      
                       <div className="mb-3">
                         <div className="flex flex-wrap gap-2">
                           {cert.skills.map((skill, skillIndex) => (
@@ -602,14 +685,24 @@ export default function ExperiencePage() {
                           ))}
                         </div>
                       </div>
-                      
                       <motion.p 
-                        className="text-xs text-gray-500"
+                        className="text-xs text-gray-500 mb-2"
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 400 }}
                       >
                         Credential ID: {cert.credentialId}
                       </motion.p>
+                      {cert.url && (
+                        <Link
+                          href={cert.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-500 text-xs font-medium"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span>View Certificate</span>
+                        </Link>
+                      )}
                     </FeedbackCard>
                   </Card3D>
                 </motion.div>
