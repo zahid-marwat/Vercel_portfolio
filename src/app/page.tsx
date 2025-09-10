@@ -14,14 +14,14 @@ export default function Home() {
   return (
     <div className="min-h-screen relative">
       {/* Optimized Squares Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Squares
           direction="diagonal"
-          speed={0.2}
-          borderColor="rgba(59, 130, 246, 0.1)"
-          squareSize={60}
-          hoverFillColor="rgba(59, 130, 246, 0.05)"
-          frameLimit={30}
+          speed={0.1}
+          borderColor="rgba(59, 130, 246, 0.08)"
+          squareSize={80}
+          hoverFillColor="rgba(59, 130, 246, 0.03)"
+          frameLimit={15}
         />
       </div>
 

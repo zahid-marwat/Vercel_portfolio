@@ -40,7 +40,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-dark-900/50 backdrop-blur-sm border-t border-white/10">
+    <footer className="bg-dark-900/95 backdrop-blur-md border-t border-primary-500/30 relative z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -132,19 +132,20 @@ const Footer = () => {
                     >
                       <Link
                         href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-white/5 hover:bg-primary-500/20 border border-white/10 hover:border-primary-500/30 rounded-lg flex items-center justify-center transition-all duration-200 group"
+                        target={social.href.startsWith('mailto:') ? '_self' : '_blank'}
+                        rel={social.href.startsWith('mailto:') ? '' : 'noopener noreferrer'}
+                        className="w-10 h-10 bg-white/5 hover:bg-primary-500/20 border border-white/10 hover:border-primary-500/50 rounded-lg flex items-center justify-center transition-all duration-300 group relative overflow-hidden"
                         aria-label={social.label}
                       >
-                        <Icon className="w-5 h-5 text-gray-400 group-hover:text-primary-400 transition-colors duration-200" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/0 via-primary-500/10 to-primary-500/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+                        <Icon className="w-5 h-5 text-gray-400 group-hover:text-primary-400 transition-colors duration-300 relative z-10" />
                       </Link>
                     </motion.div>
                   )
                 })}
               </div>
               <p className="text-gray-400 text-sm">
-                fbpzahid4830@gmail.com
+                fpzahid4830@gmail.com
               </p>
             </div>
           </FadeInUp>

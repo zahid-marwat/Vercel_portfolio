@@ -67,14 +67,14 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pt-20 relative">
       {/* Optimized Squares Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Squares
           direction="right"
-          speed={0.25}
-          borderColor="rgba(59, 130, 246, 0.08)"
-          squareSize={50}
-          hoverFillColor="rgba(59, 130, 246, 0.03)"
-          frameLimit={30}
+          speed={0.1}
+          borderColor="rgba(59, 130, 246, 0.06)"
+          squareSize={70}
+          hoverFillColor="rgba(59, 130, 246, 0.02)"
+          frameLimit={15}
         />
       </div>
 

@@ -397,16 +397,16 @@ export default function ProjectsPage() {
   }, [viewerOpen, closeViewer, nextSlide, prevSlide])
 
   return (
-    <div className="min-h-screen pt-20 relative">
+    <div className="min-h-screen pt-20 relative pb-20">
       {/* Optimized Squares Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Squares
           direction="up"
-          speed={0.3}
-          borderColor="rgba(59, 130, 246, 0.12)"
-          squareSize={45}
-          hoverFillColor="rgba(59, 130, 246, 0.06)"
-          frameLimit={30}
+          speed={0.1}
+          borderColor="rgba(59, 130, 246, 0.08)"
+          squareSize={60}
+          hoverFillColor="rgba(59, 130, 246, 0.03)"
+          frameLimit={15}
         />
       </div>
 

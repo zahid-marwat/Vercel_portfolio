@@ -66,13 +66,14 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-20 relative">
       {/* Squares Background */}
-      <div className="fixed inset-0 -z-50">
+      <div className="fixed inset-0 -z-50 pointer-events-none">
         <Squares 
-          speed={0.5} 
-          squareSize={40}
+          speed={0.1} 
+          squareSize={60}
           direction='diagonal'
-          borderColor='rgba(255, 255, 255, 0.1)'
-          hoverFillColor='rgba(99, 102, 241, 0.1)'
+          borderColor='rgba(255, 255, 255, 0.06)'
+          hoverFillColor='rgba(99, 102, 241, 0.05)'
+          frameLimit={15}
         />
       </div>
       

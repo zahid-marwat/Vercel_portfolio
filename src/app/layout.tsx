@@ -64,22 +64,17 @@ export default function RootLayout({
         <div className="relative">
           {/* Enhanced Background Effects */}
           <div className="fixed inset-0 -z-10 overflow-hidden">
-            {/* Animated gradient background */}
+            {/* Static gradient background */}
             <div 
-              className="absolute inset-0 opacity-40"
+              className="absolute inset-0 opacity-30"
               style={{
                 background: `
-                  radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-                  radial-gradient(ellipse at 40% 80%, rgba(236, 72, 153, 0.10) 0%, transparent 50%)
+                  radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 20%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 40% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 50%)
                 `
               }}
             />
-            
-            {/* Moving gradient orbs */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/8 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
             
             {/* Grid pattern overlay */}
             <div 
