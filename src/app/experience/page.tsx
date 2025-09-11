@@ -11,7 +11,7 @@ const Squares = dynamic(() => import('@/components/Squares'), { ssr: false })
 
 // Import animation components
 import { Card3D, Text3D, Button3D } from '@/components/animations/3DEffects'
-import { MorphingShape, MorphingText, MorphingIcon, LiquidMorph } from '@/components/animations/MorphingEffects'
+import { MorphingText, MorphingIcon } from '@/components/animations/MorphingEffects'
 import { FeedbackCard, FeedbackButton, ProgressFeedback } from '@/components/animations/VisualFeedback'
 
 export default function ExperiencePage() {
@@ -235,50 +235,7 @@ export default function ExperiencePage() {
       />
       </div>
       
-      {/* Morphing Background */}
-      <div className="fixed inset-0 pointer-events-none">
-      <MorphingShape
-        shapes={["circle", "square", "triangle"]}
-        className="absolute top-20 right-10 w-64 h-64 opacity-20"
-      />
-      <LiquidMorph
-        className="absolute bottom-20 left-10 w-96 h-96 opacity-10"
-      />
-      </div>
-
-      {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-3xl mx-auto text-center mb-16"
-        >
-        <Text3D
-          text="My Experience"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text"
-          depth={3}
-        />
-        <motion.p 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-300 leading-relaxed"
-        >
-          <MorphingText
-          texts={[
-            "Professional journey, education, and technical expertise",
-            "Building innovative solutions with cutting-edge technology",
-            "Transforming ideas into reality through code and creativity"
-          ]}
-          className="inline-block"
-          />
-        </motion.p>
-        </motion.div>
-      </div>
-      </section>
-
+      
       {/* Professional Experience */}
       <section className="pb-20 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -719,14 +676,6 @@ export default function ExperiencePage() {
 
       {/* Skills Overview */}
       <section className="py-20 bg-dark-800/30 relative">
-        {/* Background morphing shapes */}
-        <div className="absolute inset-0 pointer-events-none">
-          <MorphingShape
-            shapes={["hexagon", "star", "pentagon"]}
-            className="absolute top-10 left-10 w-32 h-32 opacity-10"
-          />
-          <LiquidMorph className="absolute bottom-10 right-10 w-48 h-48 opacity-5" />
-        </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -810,10 +759,6 @@ export default function ExperiencePage() {
 
       {/* CTA Section */}
       <section className="py-20 relative">
-        {/* Background effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <LiquidMorph className="absolute top-0 left-0 w-full h-full opacity-5" />
-        </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 

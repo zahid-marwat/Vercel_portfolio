@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Globe, Users, TrendingUp, Heart } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../animations'
 import { Card3D, Text3D } from '../animations/3DEffects'
-import { MorphingShape, LiquidMorph, MorphingText } from '../animations/MorphingEffects'
+import { MorphingText } from '../animations/MorphingEffects'
 import { FeedbackCard } from '../animations/VisualFeedback'
 import { motion } from 'framer-motion'
 
@@ -37,18 +37,6 @@ const AboutSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInUp>
           <div className="max-w-3xl mx-auto text-center mb-16 relative">
-            {/* Morphing Background */}
-            <div className="absolute inset-0 -z-10">
-              <MorphingShape
-                shapes={[
-                  'ellipse(100% 80% at 50% 50%)',
-                  'circle(70% at 50% 50%)',
-                  'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
-                  'ellipse(100% 80% at 50% 50%)'
-                ]}
-                className="w-full h-full bg-gradient-to-br from-primary-500/10 to-blue-500/10 blur-xl"
-              />
-            </div>
             
             <Text3D 
               text="About Me"
@@ -108,7 +96,6 @@ const AboutSection = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <LiquidMorph className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-blue-500/20" />
                   <div className="absolute inset-0 bg-dark-800/50"></div>
                   <div className="relative z-10 p-8 h-full flex items-center justify-center">
                     

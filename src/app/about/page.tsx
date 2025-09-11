@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Download, ExternalLink, MapPin, Calendar, GraduationCap, Briefcase } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
 import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
-import { MorphingShape, LiquidMorph, MorphingText } from '../../components/animations/MorphingEffects'
+import { MorphingText } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard, ProgressFeedback } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
@@ -83,18 +83,6 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-4xl mx-auto text-center mb-16 relative">
-              {/* Morphing Background Shape */}
-              <div className="absolute inset-0 -z-10">
-                <MorphingShape
-                  shapes={[
-                    'circle(70% at 50% 50%)',
-                    'ellipse(100% 80% at 50% 50%)',
-                    'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-                    'circle(70% at 50% 50%)'
-                  ]}
-                  className="w-full h-full bg-gradient-to-br from-primary-500/10 to-blue-500/10 blur-xl"
-                />
-              </div>
               
               <Text3D 
                 text="About Me"
@@ -115,7 +103,6 @@ export default function AboutPage() {
               <div className="relative flex justify-center lg:justify-start">
                 <Card3D>
                   <div className="relative w-80 h-80 md:w-96 md:h-96">
-                    <LiquidMorph className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-blue-500/20 rounded-2xl blur-3xl" />
                     
                       <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10">
                         <Image

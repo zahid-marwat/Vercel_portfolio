@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Calendar, Clock, Globe } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
 import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
-import { MorphingShape, LiquidMorph, MorphingText } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard, FeedbackInput } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
 import Squares from '../../components/Squares'
@@ -57,7 +56,7 @@ export default function ContactPage() {
       description: 'Currently available for freelance projects and collaboration opportunities'
     },
     {
-      icon: Globe,
+      icon: MapPin,
       title: 'Time Zone',
       description: 'Based in Pakistan (PKT - UTC+5), flexible with global time zones'
     }
@@ -82,18 +81,6 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16 relative">
-              {/* Morphing Background Shape */}
-              <div className="absolute inset-0 -z-10">
-                <MorphingShape
-                  shapes={[
-                    'circle(80% at 50% 50%)',
-                    'polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%)',
-                    'ellipse(90% 70% at 50% 50%)',
-                    'circle(80% at 50% 50%)'
-                  ]}
-                  className="w-full h-full bg-gradient-to-br from-primary-500/10 to-blue-500/10 blur-xl"
-                />
-              </div>
               
               <Text3D 
                 text="Get In Touch"
@@ -110,17 +97,7 @@ export default function ContactPage() {
             {/* Contact Info */}
             <SlideInLeft>
               <div className="space-y-8">
-                <div>
-                  <Text3D 
-                    text="Let's Connect"
-                    className="text-3xl font-bold text-white mb-6"
-                  />
-                  <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                    I'm always open to discussing new opportunities, interesting projects, 
-                    or just having a conversation about technology and innovation. Feel free to reach out!
-                  </p>
-                </div>
-
+                
                 {/* Contact Methods */}
                 <StaggerContainer staggerDelay={0.1} className="space-y-6">
                   {contactMethods.map((method, index) => {
@@ -147,10 +124,9 @@ export default function ContactPage() {
                                 <Icon className={`w-6 h-6 ${method.color}`} />
                               </motion.div>
                               <div className="flex-1">
-                                <MorphingText
-                                  texts={[method.title]}
-                                  className="text-lg font-semibold text-white mb-1"
-                                />
+                                <h3 className="text-lg font-semibold text-white mb-1">
+                                  {method.title}
+                                </h3>
                                 <p className="text-gray-400 text-sm mb-2">{method.description}</p>
                                 <motion.span 
                                   className={`font-medium ${method.color}`}
@@ -167,32 +143,7 @@ export default function ContactPage() {
                   })}
                 </StaggerContainer>
 
-                {/* Quick Info */}
-                <Card3D>
-                  <motion.div 
-                    className="p-6 rounded-2xl bg-primary-500/10 border border-primary-500/20"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="flex items-center space-x-2 mb-4">
-                      <MapPin className="w-5 h-5 text-primary-400" />
-                      <Text3D 
-                        text="Location"
-                        className="text-lg font-semibold text-white"
-                        depth={1}
-                      />
-                    </div>
-                    
-                      <p className="text-gray-300">
-                        Based in Pakistan, available for remote work worldwide
-                      </p>
-                    
-                    
-                    {/* 3D Decoration */}
-                    <div className="absolute top-2 right-2 opacity-30">
-                      
-                    </div>
-                  </motion.div>
-                </Card3D>
+                
               </div>
             </SlideInLeft>
 
@@ -365,10 +316,9 @@ export default function ContactPage() {
                       </motion.div>
                     
                     
-                    <MorphingText
-                      texts={[item.title]}
-                      className="text-xl font-semibold text-white mb-3"
-                    />
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      {item.title}
+                    </h3>
                     
                     
                       <p className="text-gray-400 leading-relaxed">{item.description}</p>
@@ -387,73 +337,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInUp>
-            <div className="max-w-4xl mx-auto text-center">
-              <Card3D>
-                <div className="p-12 rounded-3xl bg-gradient-to-br from-primary-500/20 via-blue-500/20 to-purple-500/20 border border-white/10 relative overflow-hidden">
-                  <LiquidMorph className="absolute inset-0 bg-dark-900/80 backdrop-blur-sm" />
-                  
-                  {/* 3D Floating Elements */}
-                  <div className="absolute top-4 left-4 opacity-30">
-                    
-                  </div>
-                  <div className="absolute bottom-4 right-4 opacity-30">
-                    
-                  </div>
-                  <div className="absolute top-1/2 right-8 opacity-20">
-                    
-                      <div className="w-4 h-4 bg-primary-400 rounded-full" />
-                    
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <Text3D 
-                      text="Ready to Start Your Project?"
-                      className="text-3xl md:text-4xl font-bold mb-6"
-                    />
-                    
-                    
-                      <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-                        Let's turn your ideas into reality with cutting-edge AI and computer vision solutions.
-                      </p>
-                    
-                    
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Button3D className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold">
-                        <Link
-                          href="mailto:fbpzahid4830@gmail.com"
-                          className="inline-flex items-center space-x-2"
-                          data-cursor-text="Start a conversation!"
-                          data-cursor-variant="pointer"
-                        >
-                          <Mail className="w-5 h-5" />
-                          <span>Start a Conversation</span>
-                        </Link>
-                      </Button3D>
-                      
-                      <Button3D className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white px-8 py-4 rounded-lg font-semibold">
-                        <Link
-                          href="/assets/Zahid_Marwat_CV.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center space-x-2"
-                          data-cursor-text="Download my CV"
-                          data-cursor-variant="grab"
-                        >
-                          <Calendar className="w-5 h-5" />
-                          <span>Download CV</span>
-                        </Link>
-                      </Button3D>
-                    </div>
-                  </div>
-                </div>
-              </Card3D>
-            </div>
-          </FadeInUp>
-        </div>
-      </section>
+      
     </div>
   )
 }

@@ -2,10 +2,10 @@
 'use client'
 
 import Link from 'next/link'
-import { ExternalLink, Github, Eye, Filter, Search } from 'lucide-react'
+import { ExternalLink, Eye, Filter, Search } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
 import { Card3D, Text3D, Button3D } from '../../components/animations/3DEffects'
-import { MorphingShape, LiquidMorph, MorphingText, MorphingIcon } from '../../components/animations/MorphingEffects'
+import { MorphingText, MorphingIcon } from '../../components/animations/MorphingEffects'
 import { FeedbackButton, FeedbackCard } from '../../components/animations/VisualFeedback'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState, useCallback } from 'react'
@@ -231,8 +231,8 @@ export default function ProjectsPage() {
       title: 'Medical Image Classification System',
       description: 'Deep learning-powered medical image classification system for automated diagnosis assistance. Trained on large datasets with high accuracy for medical professionals.',
       longDescription: 'An advanced medical AI system that assists healthcare professionals in diagnosing medical conditions through automated image analysis using convolutional neural networks and transfer learning.',
-  image: '/assets/medical-ai-preview.jpg',
-  images: ['/assets/medical-ai-preview.jpg'],
+  image: '/assets/face-detection-project/4.webp',
+  images: ['/assets/face-detection-project/4.webp'],
       technologies: ['Python', 'PyTorch', 'TensorFlow', 'scikit-learn', 'Flask', 'Docker', 'DICOM'],
       category: 'AI & ML',
       featured: false,
@@ -268,8 +268,8 @@ export default function ProjectsPage() {
       title: 'Real-time Object Detection API',
       description: 'High-performance REST API for real-time object detection using YOLO models. Supports batch processing, multiple image formats, and scalable deployment.',
       longDescription: 'A robust and scalable API service that provides real-time object detection capabilities using state-of-the-art YOLO models, designed for integration into various applications and systems.',
-  image: '/assets/object-detection-api-preview.jpg',
-  images: ['/assets/object-detection-api-preview.jpg'],
+  image: '/assets/traffice-monitoring-project/1.jpg',
+  images: ['/assets/traffice-monitoring-project/1.jpg'],
       technologies: ['Python', 'FastAPI', 'YOLO', 'OpenCV', 'Redis', 'Docker', 'AWS'],
       category: 'AI & ML',
       featured: false,
@@ -305,8 +305,8 @@ export default function ProjectsPage() {
       title: 'Data Analytics Dashboard',
       description: 'Interactive data visualization dashboard built with React and D3.js. Features real-time data updates, multiple chart types, and export capabilities.',
       longDescription: 'A comprehensive analytics dashboard that provides interactive data visualizations, real-time monitoring, and advanced filtering capabilities for business intelligence applications.',
-  image: '/assets/analytics-dashboard-preview.jpg',
-  images: ['/assets/analytics-dashboard-preview.jpg'],
+  image: '/assets/portfolio-project/1.svg',
+  images: ['/assets/portfolio-project/1.svg'],
       technologies: ['React', 'D3.js', 'Node.js', 'MongoDB', 'Socket.io', 'Chart.js'],
       category: 'Web Development',
       featured: false,
@@ -341,7 +341,6 @@ export default function ProjectsPage() {
 
   const categories = ['All', 'Computer Vision', 'AI & ML', 'Web Development', 'Data Science']
 
-  const featuredProjects = projects.filter(project => project.featured)
   const allProjects = projects
 
   // Slideshow Viewer State
@@ -415,18 +414,6 @@ export default function ProjectsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16 relative">
-              {/* Morphing Background Shape */}
-              <div className="absolute inset-0 -z-10">
-                <MorphingShape
-                  shapes={[
-                    'circle(70% at 50% 50%)',
-                    'polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)',
-                    'ellipse(100% 60% at 50% 50%)',
-                    'circle(70% at 50% 50%)'
-                  ]}
-                  className="w-full h-full bg-gradient-to-br from-primary-500/10 to-blue-500/10 blur-xl"
-                />
-              </div>
               
               <Text3D 
                 text="My Projects"
@@ -461,175 +448,13 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="pb-20 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInUp>
-            <div className="mb-12">
-              <Text3D 
-                text="Featured Projects"
-                className="text-3xl md:text-4xl font-bold text-center mb-4"
-              />
-              <p className="text-lg text-gray-300 text-center">
-                Highlighting my most impactful and innovative work
-              </p>
-            </div>
-          </FadeInUp>
-            <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-            {featuredProjects.map((project) => (
-              <div key={project.id} className="h-full cursor-pointer" onClick={() => openViewer(project, 0)}>
-              <Card3D>
-              <FeedbackCard 
-                className="group rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 overflow-hidden h-full"
-              >
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="object-cover w-full h-full"
-                />
-                </div>
-                {/* Project Content */}
-                <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-start justify-between mb-3">
-                  <Text3D 
-                  text={project.title}
-                  className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors duration-300 flex-1"
-                  depth={1}
-                  />
-                  <div className="flex items-center space-x-2 text-xs text-gray-400 ml-2">
-                  <span>{project.year}</span>
-                  <motion.div 
-                    className={`w-2 h-2 rounded-full ${
-                    project.status === 'Live' ? 'bg-green-400' : 
-                    project.status === 'Completed' ? 'bg-blue-400' : 'bg-yellow-400'
-                    }`}
-                    animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [0.7, 1, 0.7]
-                    }}
-                    transition={{ duration: 2 }}
-                  />
-                  </div>
-                </div>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                {/* Key Features */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-white mb-2">Key Features:</h4>
-                  <ul className="space-y-1">
-                  {project.features.slice(0, 3).map((feature: string, index: number) => (
-                    <motion.li 
-                    key={index} 
-                    className="flex items-start space-x-2"
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    >
-                    <motion.div 
-                      className="w-1 h-1 bg-primary-400 rounded-full mt-2 flex-shrink-0"
-                      animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{ duration: 2, delay: index * 0.3 }}
-                    />
-                    <span className="text-gray-400 text-xs">{feature}</span>
-                    </motion.li>
-                  ))}
-                  </ul>
-                </div>
-                {/* Technologies */}
-                <div className="mb-6 flex-1">
-                  <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 4).map((tech: string, index: number) => (
-                    <motion.span
-                    key={index}
-                    className="px-2 py-1 bg-primary-500/20 text-primary-400 rounded text-xs font-medium cursor-pointer"
-                    whileHover={{ 
-                      scale: 1.05, 
-                      backgroundColor: "rgba(59, 130, 246, 0.3)",
-                      y: -1
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    >
-                    {tech}
-                    </motion.span>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <motion.span 
-                    className="px-2 py-1 bg-gray-500/20 text-gray-400 rounded text-xs"
-                    whileHover={{ scale: 1.05 }}
-                    >
-                    +{project.technologies.length - 4} more
-                    </motion.span>
-                  )}
-                  </div>
-                </div>
-                {/* Action Buttons */}
-                <div className="flex space-x-3 mt-auto">
-                  <Button3D className="flex-1 bg-primary-500 hover:bg-primary-600 text-white text-center py-2 rounded-lg text-sm font-medium">
-                  <Link
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full"
-                    onClick={(e) => e.stopPropagation()}
-                    data-cursor-text="View live demo"
-                    data-cursor-variant="pointer"
-                  >
-                    Live Demo
-                  </Link>
-                  </Button3D>
-                  <Button3D className="flex-1 bg-white/10 hover:bg-white/20 text-white text-center py-2 rounded-lg text-sm font-medium">
-                  <Link
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full"
-                    onClick={(e) => e.stopPropagation()}
-                    data-cursor-text="View source code"
-                    data-cursor-variant="grab"
-                  >
-                    View Code
-                  </Link>
-                  </Button3D>
-                </div>
-                </div>
-              </FeedbackCard>
-              </Card3D>
-              </div>
-            ))}
-            </StaggerContainer>
-          <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} featured={true} onOpen={openViewer}></ProjectCard>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
       {/* All Projects */}
-      <section className="py-20 bg-dark-800/30 backdrop-blur-sm relative z-10">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInUp>
-            <div className="mb-12">
-              <Text3D 
-                text="All Projects"
-                className="text-3xl md:text-4xl font-bold text-center mb-4"
-              />
-              <p className="text-lg text-gray-300 text-center">
-                Complete collection of my development work
-              </p>
-            </div>
-          </FadeInUp>
 
           <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {allProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} featured={false} onOpen={openViewer} />
+              <ProjectCard key={project.id} project={project} onOpen={openViewer} />
             ))}
           </StaggerContainer>
         </div>
@@ -692,7 +517,7 @@ export default function ProjectsPage() {
   )
 }
 
-function ProjectCard({ project, featured, onOpen }: { project: any; featured: boolean; onOpen: (p: any) => void }) {
+function ProjectCard({ project, onOpen }: { project: any; onOpen: (p: any) => void }) {
   return (
     <div className="cursor-pointer" onClick={() => onOpen(project)}>
       <Card3D>
@@ -700,67 +525,29 @@ function ProjectCard({ project, featured, onOpen }: { project: any; featured: bo
         className="group rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 overflow-hidden h-full"
       >
         {/* Project Image */}
-        <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-blue-500/20 overflow-hidden">
-          <LiquidMorph className="absolute inset-0 bg-dark-800/50" />
-          <div className="relative z-10 p-6 h-full flex items-center justify-center">
-            <div className="text-center">
-              <MorphingIcon
-                icons={[
-                  project.category === 'Computer Vision' ? '👁️' : 
-                  project.category === 'AI & ML' ? '🧠' : 
-                  project.category === 'Web Development' ? '💻' : '📊'
-                ]}
-                className="text-4xl mb-2 block"
-              />
-              <span className="text-primary-400 text-sm font-medium">{project.category}</span>
-              {featured && (
-                <motion.div 
-                  className="absolute top-4 left-4 bg-primary-500 text-white px-2 py-1 rounded text-xs font-medium"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    boxShadow: ['0 0 0px rgba(59, 130, 246, 0)', '0 0 20px rgba(59, 130, 246, 0.5)', '0 0 0px rgba(59, 130, 246, 0)']
-                  }}
-                  transition={{ duration: 2 }}
-                >
-                  Featured
-                </motion.div>
-              )}
+        <div className="relative h-48 overflow-hidden">
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <div className="bg-gradient-to-br from-primary-500/20 to-blue-500/20 w-full h-full flex items-center justify-center">
+              <div className="text-center">
+                <MorphingIcon
+                  icons={[
+                    project.category === 'Computer Vision' ? '👁️' : 
+                    project.category === 'AI & ML' ? '🧠' : 
+                    project.category === 'Web Development' ? '💻' : '📊'
+                  ]}
+                  className="text-4xl mb-2 block"
+                />
+                <span className="text-primary-400 text-sm font-medium">{project.category}</span>
+              </div>
             </div>
-          </div>
-          <motion.div 
-            className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            initial={{ scale: 0.8, y: -10 }}
-            whileHover={{ scale: 1, y: 0 }}
-          >
-            <div className="flex space-x-2">
-        <Button3D className="w-8 h-8 bg-primary-500 hover:bg-primary-600 rounded-full p-0">
-                <Link
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full h-full flex items-center justify-center"
-          onClick={(e) => e.stopPropagation()}
-                  data-cursor-text="View live demo"
-                  data-cursor-variant="pointer"
-                >
-                  <ExternalLink className="w-4 h-4 text-white" />
-                </Link>
-              </Button3D>
-        <Button3D className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full p-0">
-                <Link
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full h-full flex items-center justify-center"
-          onClick={(e) => e.stopPropagation()}
-                  data-cursor-text="View source code"
-                  data-cursor-variant="grab"
-                >
-                  <Github className="w-4 h-4 text-white" />
-                </Link>
-              </Button3D>
-            </div>
-          </motion.div>
+          )}
+          <div className="absolute inset-0 bg-dark-800/20" />
         </div>
 
         {/* Project Content */}
@@ -844,36 +631,6 @@ function ProjectCard({ project, featured, onOpen }: { project: any; featured: bo
                 </motion.span>
               )}
             </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex space-x-3 mt-auto">
-      <Button3D className="flex-1 bg-primary-500 hover:bg-primary-600 text-white text-center py-2 rounded-lg text-sm font-medium">
-              <Link
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
-        onClick={(e) => e.stopPropagation()}
-                data-cursor-text="View live demo"
-                data-cursor-variant="pointer"
-              >
-                Live Demo
-              </Link>
-            </Button3D>
-      <Button3D className="flex-1 bg-white/10 hover:bg-white/20 text-white text-center py-2 rounded-lg text-sm font-medium">
-              <Link
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
-        onClick={(e) => e.stopPropagation()}
-                data-cursor-text="View source code"
-                data-cursor-variant="grab"
-              >
-                View Code
-              </Link>
-            </Button3D>
           </div>
         </div>
       </FeedbackCard>

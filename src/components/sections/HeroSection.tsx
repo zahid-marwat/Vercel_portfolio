@@ -6,8 +6,8 @@ import { ArrowRight, Download, Github, Linkedin, Twitter, Mail } from 'lucide-re
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn } from '../animations'
-import { Card3D, Text3D, Button3D } from '../animations/3DEffects'
-import { MorphingShape, LiquidMorph, MorphingText } from '../animations/MorphingEffects'
+import { Card3D, Text3D } from '../animations/3DEffects'
+import { MorphingText } from '../animations/MorphingEffects'
 import HolographicLogo from '../HolographicLogo'
 
 
@@ -159,16 +159,18 @@ const HeroSection = () => {
             {/* Enhanced 3D CTA Buttons */}
             <FadeInUp delay={0.8}>
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
-                <Button3D 
+                <motion.button 
                   onClick={() => {
                     const element = document.getElementById('projects')
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
                     }
                   }}
-                  className="group"
+                  className="group bg-primary-500 hover:bg-primary-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300"
                   data-cursor-text="See my amazing projects!"
                   data-cursor-variant="pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center space-x-2">
                     <span>View My Work</span>
@@ -179,9 +181,9 @@ const HeroSection = () => {
                       <ArrowRight className="w-5 h-5" />
                     </motion.div>
                   </div>
-                </Button3D>
+                </motion.button>
                 
-                <Button3D 
+                <motion.button 
                   onClick={() => {
                     const link = document.createElement('a')
                     link.href = '/assets/Zahid_Marwat_CV.pdf'
@@ -190,9 +192,11 @@ const HeroSection = () => {
                     link.click()
                     document.body.removeChild(link)
                   }}
-                  className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white"
+                  className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300"
                   data-cursor-text="Download my resume"
                   data-cursor-variant="grab"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center space-x-2">
                     <motion.div
@@ -203,7 +207,7 @@ const HeroSection = () => {
                     </motion.div>
                     <span>Download CV</span>
                   </div>
-                </Button3D>
+                </motion.button>
               </div>
             </FadeInUp>
 

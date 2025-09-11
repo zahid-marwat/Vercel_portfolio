@@ -5,7 +5,7 @@ import { ExternalLink, Github } from 'lucide-react'
 import { FadeInUp, StaggerContainer, ScaleIn, HoverCard, RevealAnimation } from '../animations'
 import { NeonGlow, TextReveal, LiquidAnimation } from '../animations/SpecialEffects'
 import { Card3D, Text3D, Button3D } from '../animations/3DEffects'
-import { MorphingShape, LiquidMorph, MorphingIcon } from '../animations/MorphingEffects'
+import { MorphingIcon } from '../animations/MorphingEffects'
 import { SkeletonCard } from '../animations/SkeletonScreens'
 import { FeedbackButton, FeedbackCard } from '../animations/VisualFeedback'
 import { motion } from 'framer-motion'
@@ -66,18 +66,6 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInUp>
           <div className="max-w-3xl mx-auto text-center mb-16 relative">
-            {/* Morphing Background Shape */}
-            <div className="absolute inset-0 -z-10">
-              <MorphingShape
-                shapes={[
-                  'circle(70% at 50% 50%)',
-                  'ellipse(100% 80% at 50% 50%)',
-                  'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-                  'circle(70% at 50% 50%)'
-                ]}
-                className="w-full h-full bg-gradient-to-br from-primary-500/5 to-blue-500/5 blur-xl"
-              />
-            </div>
             
             <Text3D 
               text="Featured Projects" 
