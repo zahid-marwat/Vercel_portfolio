@@ -15,6 +15,46 @@ const Squares = dynamic(() => import('../../components/Squares'), { ssr: false }
 
 export default function ProjectsPage() {
   const projects = [
+      {
+      id: 8,
+      title: 'Smart-Annotator',
+      description: 'A desktop React + Electron tool with a Flask backend for efficient image quality control and annotation review.',
+      longDescription: 'Smart-Annotator is a cross-platform desktop application built with React and Electron, featuring a Flask backend for robust image annotation quality control. It supports both detection (XML) and segmentation (JSON/LabelMe) formats, per-object attributes, auto-save, and a polished reviewing experience. Designed for annotation teams needing reliability, speed, and consistent metadata.',
+      image: '/assets/smart-annotator/1.png',
+      images: [
+        '/assets/smart-annotator/1.png',
+        '/assets/smart-annotator/2.png',
+        '/assets/smart-annotator/3.png',
+        '/assets/smart-annotator/4.png',
+        '/assets/smart-annotator/5.png',
+        '/assets/smart-annotator/6.png'
+      ],
+      technologies: ['React', 'Electron', 'Flask', 'Python', 'LabelMe', 'XML', 'JSON'],
+      category: 'Desktop Application',
+      featured: false,
+      features: [
+        'Per-object attributes (JSON + XML), defaults from config, and isolated updates.',
+        'Robust save paths (Electron-first with backend fallback) and canonical JSON ordering.',
+        'Auto-save plus unified Ctrl+S for both attributes and geometry.',
+        'Interactive canvas with polygons, bounding boxes, zoom/pan, and map integration.'
+      ],
+      challenges: [
+        'Synchronizing state between Electron frontend and Flask backend.',
+        'Ensuring data consistency across annotation formats.',
+        'Providing a seamless user experience for both detection and segmentation tasks.',
+        'Implementing efficient auto-save and undo/redo functionality.'
+      ],
+      results: [
+        'Streamlined annotation review workflow.',
+        'Reduced manual errors and improved metadata consistency.',
+        'Faster quality control cycles for annotation teams.',
+        'Adopted by multiple annotation projects for production use.'
+      ],
+      liveUrl: '',
+      githubUrl: 'https://github.com/zahid-marwat/smart-annotator',
+      status: 'Completed',
+      year: '2025'
+    },
     {
       id: 0,
       title: 'Road Assets Condition Index',
@@ -58,7 +98,7 @@ export default function ProjectsPage() {
       liveUrl: 'https://road-assets-aci-demo.vercel.app',
       githubUrl: 'https://github.com/zahid-marwat/road-assets-condition-index',
       status: 'Completed',
-      year: '2024'
+      year: '2025'
     },
     {
       id: 7,
