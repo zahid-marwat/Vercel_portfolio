@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Calendar, Clock, Globe } from 'lucide-react'
 import { FadeInUp, StaggerContainer, SlideInLeft, SlideInRight } from '../../components/animations'
@@ -62,12 +63,46 @@ export default function ContactPage() {
     }
   ]
 
+  const [formData, setFormData] = React.useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [submitted, setSubmitted] = React.useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Simulate network delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
+    const { name, email, subject, message } = formData
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`
+
+    window.location.href = `mailto:fbpzahid4830@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`
+
+    setSubmitted(true)
+    setIsSubmitting(false)
+    setFormData({ name: '', email: '', subject: '', message: '' })
+
+    // Reset success message after 5 seconds
+    setTimeout(() => setSubmitted(false), 5000)
+  }
+
   return (
     <div className="min-h-screen pt-20 relative">
       {/* Squares Background */}
       <div className="fixed inset-0 -z-50 pointer-events-none">
-        <Squares 
-          speed={0.1} 
+        <Squares
+          speed={0.1}
           squareSize={60}
           direction='diagonal'
           borderColor='rgba(255, 255, 255, 0.06)'
@@ -75,18 +110,18 @@ export default function ContactPage() {
           frameLimit={15}
         />
       </div>
-      
+
       {/* Hero Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16 relative">
-              
-              <Text3D 
+
+              <Text3D
                 text="Get In Touch"
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               />
-              
+
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
                 Let's discuss your next project or collaboration opportunity
               </p>
@@ -97,7 +132,7 @@ export default function ContactPage() {
             {/* Contact Info */}
             <SlideInLeft>
               <div className="space-y-8">
-                
+
                 {/* Contact Methods */}
                 <StaggerContainer staggerDelay={0.1} className="space-y-6">
                   {contactMethods.map((method, index) => {
@@ -116,7 +151,7 @@ export default function ContactPage() {
                             data-cursor-variant="pointer"
                           >
                             <div className="flex items-start space-x-4">
-                              <motion.div 
+                              <motion.div
                                 className={`w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center`}
                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                 transition={{ duration: 0.3 }}
@@ -128,7 +163,7 @@ export default function ContactPage() {
                                   {method.title}
                                 </h3>
                                 <p className="text-gray-400 text-sm mb-2">{method.description}</p>
-                                <motion.span 
+                                <motion.span
                                   className={`font-medium ${method.color}`}
                                   whileHover={{ scale: 1.02 }}
                                 >
@@ -143,7 +178,7 @@ export default function ContactPage() {
                   })}
                 </StaggerContainer>
 
-                
+
               </div>
             </SlideInLeft>
 
@@ -153,119 +188,138 @@ export default function ContactPage() {
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden">
                   {/* 3D Floating Elements */}
                   <div className="absolute top-4 right-4 opacity-20">
-                    
+
                   </div>
                   <div className="absolute bottom-4 left-4 opacity-20">
-                    
+
                   </div>
-                  
-                  <Text3D 
+
+                  <Text3D
                     text="Send a Message"
                     className="text-2xl font-bold text-white mb-6"
                   />
-                  
-                  <form className="space-y-6">
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <StaggerContainer staggerDelay={0.1}>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                          <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                              Name *
-                            </label>
-                            <motion.input
-                              type="text"
-                              id="name"
-                              name="name"
-                              required
-                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                              placeholder="Your name"
-                              whileFocus={{ scale: 1.01, borderColor: '#3b82f6' }}
-                              data-cursor-text="Enter your name"
-                              data-cursor-variant="text"
-                            />
-                          </div>
-                        
-                        
-                        
-                          <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                              Email *
-                            </label>
-                            <motion.input
-                              type="email"
-                              id="email"
-                              name="email"
-                              required
-                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                              placeholder="your.email@example.com"
-                              whileFocus={{ scale: 1.01, borderColor: '#3b82f6' }}
-                              data-cursor-text="Enter your email"
-                              data-cursor-variant="text"
-                            />
-                          </div>
-                        
-                      </div>
 
-                      
                         <div>
-                          <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                            Subject *
+                          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                            Name *
                           </label>
                           <motion.input
                             type="text"
-                            id="subject"
-                            name="subject"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
                             required
                             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                            placeholder="Project inquiry, collaboration, etc."
+                            placeholder="Your name"
                             whileFocus={{ scale: 1.01, borderColor: '#3b82f6' }}
-                            data-cursor-text="Enter subject"
+                            data-cursor-text="Enter your name"
                             data-cursor-variant="text"
                           />
                         </div>
-                      
 
-                      
+
+
                         <div>
-                          <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                            Message *
+                          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                            Email *
                           </label>
-                          <motion.textarea
-                            id="message"
-                            name="message"
-                            rows={6}
+                          <motion.input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200 resize-none"
-                            placeholder="Tell me about your project, requirements, timeline, etc."
-                            whileFocus={{ scale: 1.01 }}
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
+                            placeholder="your.email@example.com"
+                            whileFocus={{ scale: 1.01, borderColor: '#3b82f6' }}
+                            data-cursor-text="Enter your email"
+                            data-cursor-variant="text"
                           />
                         </div>
-                      
+
+                      </div>
+
+
+                      <div>
+                        <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                          Subject *
+                        </label>
+                        <motion.input
+                          type="text"
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
+                          placeholder="Project inquiry, collaboration, etc."
+                          whileFocus={{ scale: 1.01, borderColor: '#3b82f6' }}
+                          data-cursor-text="Enter subject"
+                          data-cursor-variant="text"
+                        />
+                      </div>
+
+
+
+                      <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                          Message *
+                        </label>
+                        <motion.textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          rows={6}
+                          required
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200 resize-none"
+                          placeholder="Tell me about your project, requirements, timeline, etc."
+                          whileFocus={{ scale: 1.01 }}
+                        />
+                      </div>
+
 
                       <Button3D className="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold py-4 px-6 rounded-lg">
                         <motion.button
                           type="submit"
-                          className="w-full flex items-center justify-center space-x-2"
-                          data-cursor-text="Send your message!"
+                          disabled={isSubmitting}
+                          className="w-full flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                          data-cursor-text={isSubmitting ? "Sending..." : "Send your message!"}
                           data-cursor-variant="pointer"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                          whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         >
-                          <Send className="w-5 h-5" />
-                          <span>Send Message</span>
+                          <Send className={`w-5 h-5 ${isSubmitting ? 'animate-pulse' : ''}`} />
+                          <span>{isSubmitting ? 'Opening Email Client...' : 'Send Message'}</span>
                         </motion.button>
                       </Button3D>
+
+                      {submitted && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-center text-sm"
+                        >
+                          Thanks! Your email client should open shortly.
+                        </motion.div>
+                      )}
                     </StaggerContainer>
                   </form>
 
-                  <motion.div 
+                  <motion.div
                     className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg"
                     whileHover={{ scale: 1.01 }}
                   >
                     <p className="text-blue-400 text-sm">
                       📧 Alternatively, you can email me directly at{' '}
-                      <Link 
-                        href="mailto:fbpzahid4830@gmail.com" 
+                      <Link
+                        href="mailto:fbpzahid4830@gmail.com"
                         className="underline hover:text-blue-300"
                         data-cursor-text="Send email directly"
                         data-cursor-variant="pointer"
@@ -286,15 +340,15 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInUp>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <Text3D 
+              <Text3D
                 text="Availability & Response"
                 className="text-3xl md:text-4xl font-bold mb-6"
               />
-              
-                <p className="text-lg text-gray-300">
-                  Here's what you can expect when working with me
-                </p>
-              
+
+              <p className="text-lg text-gray-300">
+                Here's what you can expect when working with me
+              </p>
+
             </div>
           </FadeInUp>
 
@@ -306,27 +360,27 @@ export default function ContactPage() {
                   <FeedbackCard
                     className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/30 transition-all duration-300 h-full"
                   >
-                    
-                      <motion.div 
-                        className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <Icon className="w-8 h-8 text-primary-400" />
-                      </motion.div>
-                    
-                    
+
+                    <motion.div
+                      className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Icon className="w-8 h-8 text-primary-400" />
+                    </motion.div>
+
+
                     <h3 className="text-xl font-semibold text-white mb-3">
                       {item.title}
                     </h3>
-                    
-                    
-                      <p className="text-gray-400 leading-relaxed">{item.description}</p>
-                    
-                    
+
+
+                    <p className="text-gray-400 leading-relaxed">{item.description}</p>
+
+
                     {/* 3D Decoration */}
                     <div className="absolute top-2 right-2 opacity-20">
-                      
+
                     </div>
                   </FeedbackCard>
                 </Card3D>
@@ -337,7 +391,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      
+
     </div>
   )
 }
