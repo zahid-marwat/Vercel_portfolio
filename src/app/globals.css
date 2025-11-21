@@ -233,6 +233,71 @@ body {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-text {
+    background-size: 100% 100%;
+    animation: none;
+  }
+
+  .floating,
+  .pulse-glow,
+  .animate-float,
+  .loading-skeleton {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .pc-card {
+    animation: none !important;
+  }
+  
+  .pc-shine {
+    animation: none !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: none;
+    background: rgba(30, 41, 59, 0.95); /* Solid fallback */
+  }
+  
+  .pc-card-wrapper::before {
+    filter: none;
+    display: none; /* Remove heavy glow on mobile */
+  }
+  
+  .pc-card {
+    animation: none; /* Disable continuous glow rotation */
+    background-blend-mode: normal;
+  }
+  
+  .pc-shine {
+    animation: none;
+    mask-image: none; /* Expensive operation */
+    background-blend-mode: normal;
+  }
+  
+  .pc-glare {
+    display: none; /* Remove glare on mobile */
+  }
+  
+  .floating {
+    animation: none; /* Disable floating on mobile to save battery/performance */
+  }
+}
+
 /* Enhanced smooth scrolling for all elements */
 * {
   scroll-behavior: smooth;

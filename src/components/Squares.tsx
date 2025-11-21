@@ -58,7 +58,7 @@ const Squares = ({
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -67,25 +67,25 @@ const Squares = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !isVisible || !isTabVisible) return;
-    
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     // Fix 3: Reduce Animation Complexity on mobile
-    const effectiveSquareSize = isMobile ? squareSize * 1.5 : squareSize;
+    const effectiveSquareSize = isMobile ? squareSize * 2 : squareSize; // Increased from 1.5
     const effectiveSpeed = isMobile ? speed * 0.5 : speed;
 
     const resizeCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio, isMobile ? 1 : 2); // Reduce DPR on mobile
       const rect = canvas.getBoundingClientRect();
-      
+
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-      
+
       ctx.scale(dpr, dpr);
       canvas.style.width = rect.width + 'px';
       canvas.style.height = rect.height + 'px';
-      
+
       numSquaresX.current = Math.ceil(rect.width / effectiveSquareSize) + 1;
       numSquaresY.current = Math.ceil(rect.height / effectiveSquareSize) + 1;
     };
@@ -143,11 +143,12 @@ const Squares = ({
       if (!isVisible || !isTabVisible) return;
 
       const deltaTime = currentTime - lastFrameTime.current;
-      const frameInterval = 1000 / frameLimit;
+      const effectiveFrameLimit = isMobile ? 15 : frameLimit; // Force 15fps on mobile
+      const frameInterval = 1000 / effectiveFrameLimit;
 
       if (deltaTime >= frameInterval) {
         const adjustedSpeed = Math.max(effectiveSpeed, 0.1);
-        
+
         switch (direction) {
           case 'right':
             gridOffset.current.x = (gridOffset.current.x - adjustedSpeed + effectiveSquareSize) % effectiveSquareSize;
@@ -178,7 +179,7 @@ const Squares = ({
 
     const handleMouseMove = (event: MouseEvent) => {
       if (isMobile) return; // Disable hover effects on mobile for performance
-      
+
       const rect = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
@@ -206,7 +207,7 @@ const Squares = ({
       canvas.addEventListener('mousemove', handleMouseMove);
       canvas.addEventListener('mouseleave', handleMouseLeave);
     }
-    
+
     requestRef.current = requestAnimationFrame(updateAnimation);
 
     return () => {

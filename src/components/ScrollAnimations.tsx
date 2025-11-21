@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
 import { ReactNode } from 'react'
 
 interface ScrollRevealProps {
@@ -22,21 +22,25 @@ interface ScrollScaleProps {
 }
 
 // GitHub-style scroll reveal animation
-export const ScrollReveal = ({ 
-  children, 
-  delay = 0, 
+export const ScrollReveal = ({
+  children,
+  delay = 0,
   direction = 'up',
-  className = "" 
+  className = ""
 }: ScrollRevealProps) => {
   const { scrollYProgress } = useScroll()
-  
+
+  const shouldReduceMotion = useReducedMotion()
+
   const getInitialTransform = () => {
+    if (shouldReduceMotion) return { opacity: 0 }
+
     switch (direction) {
-      case 'up': return { y: 100, opacity: 0 }
-      case 'down': return { y: -100, opacity: 0 }
-      case 'left': return { x: -100, opacity: 0 }
-      case 'right': return { x: 100, opacity: 0 }
-      default: return { y: 100, opacity: 0 }
+      case 'up': return { y: 50, opacity: 0 } // Reduced distance
+      case 'down': return { y: -50, opacity: 0 }
+      case 'left': return { x: -50, opacity: 0 }
+      case 'right': return { x: 50, opacity: 0 }
+      default: return { y: 50, opacity: 0 }
     }
   }
 
@@ -44,9 +48,9 @@ export const ScrollReveal = ({
     <motion.div
       className={className}
       initial={getInitialTransform()}
-      whileInView={{ 
-        x: 0, 
-        y: 0, 
+      whileInView={{
+        x: 0,
+        y: 0,
         opacity: 1,
         transition: {
           duration: 0.8,
@@ -62,13 +66,14 @@ export const ScrollReveal = ({
 }
 
 // Parallax scrolling effect
-export const ParallaxContainer = ({ 
-  children, 
+export const ParallaxContainer = ({
+  children,
   speed = 0.5,
-  className = "" 
+  className = ""
 }: ParallaxProps) => {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, -speed * 100])
+  const shouldReduceMotion = useReducedMotion()
+  const y = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -speed * 100])
   const smoothY = useSpring(y, { stiffness: 100, damping: 30 })
 
   return (
@@ -84,14 +89,15 @@ export const ParallaxContainer = ({
 // Scale on scroll effect
 export const ScrollScale = ({ children, className = "" }: ScrollScaleProps) => {
   const { scrollYProgress } = useScroll()
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1.1])
+  const shouldReduceMotion = useReducedMotion()
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [shouldReduceMotion ? 1 : 0.8, 1, shouldReduceMotion ? 1 : 1.1])
   const smoothScale = useSpring(scale, { stiffness: 100, damping: 30 })
 
   return (
     <motion.div
       className={className}
       style={{ scale: smoothScale }}
-      whileInView={{ 
+      whileInView={{
         scale: 1,
         transition: { duration: 0.6, ease: "easeOut" }
       }}
@@ -109,19 +115,19 @@ interface StaggerRevealProps {
   staggerDelay?: number
 }
 
-export const StaggerReveal = ({ 
-  children, 
+export const StaggerReveal = ({
+  children,
   className = "",
-  staggerDelay = 0.1 
+  staggerDelay = 0.1
 }: StaggerRevealProps) => {
   return (
     <div className={className}>
       {children.map((child, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ 
-            opacity: 1, 
+          initial={{ opacity: 0, y: 20 }} // Reduced distance
+          whileInView={{
+            opacity: 1,
             y: 0,
             transition: {
               duration: 0.6,
@@ -139,24 +145,25 @@ export const StaggerReveal = ({
 }
 
 // GitHub-style floating elements
-export const FloatingElement = ({ 
-  children, 
+export const FloatingElement = ({
+  children,
   className = "",
-  intensity = 20 
-}: { 
+  intensity = 20
+}: {
   children: ReactNode
   className?: string
   intensity?: number
 }) => {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, intensity])
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 5])
+  const shouldReduceMotion = useReducedMotion()
+  const y = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : intensity])
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : 5])
 
   return (
     <motion.div
       className={className}
       style={{ y, rotate }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.05,
         transition: { duration: 0.2 }
       }}
@@ -167,10 +174,10 @@ export const FloatingElement = ({
 }
 
 // Magnetic scroll effect for elements
-export const MagneticScroll = ({ 
-  children, 
-  className = "" 
-}: { 
+export const MagneticScroll = ({
+  children,
+  className = ""
+}: {
   children: ReactNode
   className?: string
 }) => {
@@ -197,14 +204,15 @@ export const MagneticScroll = ({
 }
 
 // Text reveal animation (GitHub-style)
-export const TextRevealScroll = ({ 
-  text, 
-  className = "" 
-}: { 
+export const TextRevealScroll = ({
+  text,
+  className = ""
+}: {
   text: string
   className?: string
 }) => {
   const words = text.split(' ')
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <motion.div className={className}>
@@ -212,7 +220,7 @@ export const TextRevealScroll = ({
         <motion.span
           key={index}
           className="inline-block mr-2"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           whileInView={{
             opacity: 1,
             y: 0,

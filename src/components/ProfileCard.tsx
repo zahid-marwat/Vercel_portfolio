@@ -61,9 +61,21 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   status = 'Open For Discussion',
   showUserInfo = false,
   onContactClick
+  showUserInfo = false,
+  onContactClick
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;
@@ -271,8 +283,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()} style={cardStyle}>
       <section ref={cardRef} className="pc-card">
         <div className="pc-inside">
-          <div className="pc-shine" />
-          <div className="pc-glare" />
+          {!isMobile && <div className="pc-shine" />}
+          {!isMobile && <div className="pc-glare" />}
           <div className="pc-content pc-avatar-content">
             <img
               className="avatar"
@@ -304,7 +316,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     <div className="pc-status">{status}</div>
                   </div>
                 </div>
-               
+
               </div>
             )}
           </div>
