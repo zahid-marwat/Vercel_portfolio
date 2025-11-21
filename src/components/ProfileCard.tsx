@@ -61,8 +61,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   status = 'Open For Discussion',
   showUserInfo = false,
   onContactClick
-  showUserInfo = false,
-  onContactClick
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
