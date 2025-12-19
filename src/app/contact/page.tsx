@@ -81,20 +81,28 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate network delay for better UX
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-    const { name, email, subject, message } = formData
-    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`
-
-    window.location.href = `mailto:fbpzahid4830@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`
-
-    setSubmitted(true)
-    setIsSubmitting(false)
-    setFormData({ name: '', email: '', subject: '', message: '' })
-
-    // Reset success message after 5 seconds
-    setTimeout(() => setSubmitted(false), 5000)
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setTimeout(() => setSubmitted(false), 5000)
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('Failed to send message. Please try again or email me directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -296,7 +304,7 @@ export default function ContactPage() {
                           whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         >
                           <Send className={`w-5 h-5 ${isSubmitting ? 'animate-pulse' : ''}`} />
-                          <span>{isSubmitting ? 'Opening Email Client...' : 'Send Message'}</span>
+                          <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                         </motion.button>
                       </Button3D>
 
@@ -306,7 +314,7 @@ export default function ContactPage() {
                           animate={{ opacity: 1, y: 0 }}
                           className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-center text-sm"
                         >
-                          Thanks! Your email client should open shortly.
+                          Thanks! Your message has been sent successfully.
                         </motion.div>
                       )}
                     </StaggerContainer>
