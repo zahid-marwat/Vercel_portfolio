@@ -83,6 +83,7 @@ export default function ProjectsPage() {
         'Condition assessment using deep learning',
         'RESTful API for integration',
         'Dashboard for asset monitoring'
+        
       ],
       challenges: [
         'Accurate detection of diverse asset types',
