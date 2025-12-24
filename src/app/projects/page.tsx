@@ -71,6 +71,7 @@ export default function ProjectsPage() {
         '/assets/road-assets-aci/7.jpg',
         '/assets/road-assets-aci/8.jpg',
         
+        
       ],
       technologies: ['Python', 'YOLO', 'OpenCV', 'FastAPI', 'GeoPandas', 'TensorFlow', 'Docker'],
       category: 'Computer Vision',
