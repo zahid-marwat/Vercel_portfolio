@@ -239,30 +239,6 @@ const HeroSection = () => {
                 })}
               </div>
             </FadeInUp>
-
-            {/* Stats */}
-            <FadeInUp delay={1.4}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
-                {[
-                  { number: '50+', label: 'Projects' },
-                  { number: '3+', label: 'Years Experience' },
-                  { number: '25+', label: 'Happy Clients' },
-                  { number: '15+', label: 'Certifications' }
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    className="text-center lg:text-left"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 1.6 + index * 0.1 }}
-                  >
-                    <div className="text-2xl md:text-3xl font-bold text-primary-400">{stat.number}</div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </FadeInUp>
           </SlideInLeft>
 
           {/* Profile Card */}
@@ -289,16 +265,9 @@ const HeroSection = () => {
                     title="Computer Vision Engineer"
                     handle="zahid-marwat"
                     status="Available for hire"
-                    contactText="Let's Connect"
                     avatarUrl="/assets/profile-picture.png"
                     enableTilt={true}
                     enableMobileTilt={false}
-                    onContactClick={() => {
-                      const element = document.getElementById('contact')
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                      }
-                    }}
                   />
                 </div>
               </ScaleIn>

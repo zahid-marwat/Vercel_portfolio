@@ -24,7 +24,7 @@ const Navigation = () => {
       
       // Only do section detection on home page
       if (isHomePage) {
-        const sections = ['home', 'about', 'experience', 'tech-stack', 'projects', 'contact']
+        const sections = ['home', 'about', 'experience', 'projects']
         const currentSection = sections.find(section => {
           const element = document.getElementById(section)
           if (element) {
@@ -44,21 +44,12 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isHomePage])
 
-  // Handle navigation - different behavior for home vs detail pages
+  // Handle navigation - smooth scroll to section
   const handleNavigation = (href: string, label: string) => {
-    if (isHomePage) {
-      // On home page: scroll to section
-      scrollToSection(href)
+    if (pathname !== '/') {
+      router.push(`/#${href}`)
     } else {
-      // On detail pages: navigate to appropriate page
-      if (href === 'home') {
-        router.push('/')
-      } else if (href === 'tech-stack') {
-        // Tech stack is only on home page, so go home and scroll
-        router.push('/#tech-stack')
-      } else {
-        router.push(`/${href}`)
-      }
+      scrollToSection(href)
     }
     setIsOpen(false)
   }
@@ -80,9 +71,7 @@ const Navigation = () => {
     { href: 'home', label: 'Home' },
     { href: 'about', label: 'About' },
     { href: 'experience', label: 'Experience' },
-    { href: 'tech-stack', label: 'Tech Stack' },
     { href: 'projects', label: 'Projects' },
-    { href: 'contact', label: 'Contact' },
   ]
 
   // Determine active state based on current page
@@ -92,7 +81,7 @@ const Navigation = () => {
     } else {
       // On detail pages, highlight the current page
       if (href === 'home') return false
-      return pathname === `/${href}` || (href === 'tech-stack' && pathname === '/')
+      return pathname === `/${href}`
     }
   }
 

@@ -55,7 +55,7 @@ export const Card3D = ({ children, className = "" }: Card3DProps) => {
           transform: "translateZ(75px)",
           transformStyle: "preserve-3d"
         }}
-        className="relative"
+        className="relative h-full flex flex-col"
       >
         {children}
         {/* 3D Shadow */}

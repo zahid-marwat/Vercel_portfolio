@@ -5,8 +5,6 @@ const HeroSection = dynamic(() => import('@/components/sections/HeroSection'), {
 const AboutSection = dynamic(() => import('@/components/sections/AboutSection'), { ssr: false })
 const ExperienceSection = dynamic(() => import('@/components/sections/ExperienceSection'), { ssr: false })
 const ProjectsSection = dynamic(() => import('@/components/sections/ProjectsSection'), { ssr: false })
-const TechStackSection = dynamic(() => import('@/components/sections/TechStackSection'), { ssr: false })
-const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'), { ssr: false })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false })
 const Squares = dynamic(() => import('@/components/Squares'), { ssr: false })
 
@@ -35,16 +33,10 @@ export default function Home() {
         <section id="experience">
           <ExperienceSection />
         </section>
-        <section id="tech-stack">
-          <TechStackSection />
-        </section>
         <section id="projects">
           <ProjectsSection />
         </section>
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
-        <section id="contact">
+        <section id="stats">
           <CTASection />
         </section>
       </div>
